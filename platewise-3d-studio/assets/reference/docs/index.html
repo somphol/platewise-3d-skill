@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Documentation — PlateWise 3D</title>
+  <meta name="description" content="Architecture, nutrition methodology, sources, testing, deployment and reproduction notes for PlateWise 3D.">
+  <link rel="canonical" href="https://somphol.github.io/platewise-3d/docs/">
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+  <style>
+    :root { --bg:#f4f0e5; --surface:#fffdf7; --ink:#15251d; --muted:#6f7f75; --line:#ddd5c3; --green:#2f6b47; --bright:#7ac142; }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+      color: var(--ink); background:
+        radial-gradient(900px 500px at 5% 0%, rgba(122,193,66,.14), transparent 60%),
+        radial-gradient(700px 420px at 100% 0%, rgba(216,162,60,.14), transparent 55%),
+        var(--bg);
+      line-height: 1.55;
+    }
+    .wrap { max-width: 1040px; margin: 0 auto; padding: 32px 20px 60px; }
+    header { display: flex; align-items: center; gap: 14px; padding-bottom: 26px; border-bottom: 1px solid var(--line); }
+    header img { width: 40px; height: 40px; }
+    .brand { font-family: "Iowan Old Style", Palatino, Georgia, serif; font-size: 24px; font-weight: 700; letter-spacing: -.02em; }
+    .brand span { font-family: ui-sans-serif, system-ui, sans-serif; font-size: 10px; background: var(--green); color: #fff; padding: 2px 5px; border-radius: 4px; vertical-align: 3px; margin-left: 3px; letter-spacing: .06em; }
+    .back { margin-left: auto; font-size: 12px; font-weight: 700; color: var(--green); text-decoration: none; }
+    h1 { font-family: "Iowan Old Style", Palatino, Georgia, serif; font-size: clamp(34px, 5vw, 54px); line-height: 1.02; letter-spacing: -.04em; margin: 34px 0 10px; font-weight: 600; }
+    .lede { max-width: 68ch; color: #3c5147; font-size: 15px; }
+    .meta { display: flex; flex-wrap: wrap; gap: 8px; margin: 20px 0 34px; }
+    .pill { font-size: 10px; font-weight: 750; letter-spacing: .04em; background: var(--surface); border: 1px solid var(--line); padding: 5px 9px; border-radius: 999px; color: var(--muted); }
+    .grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+    a.card {
+      display: block; text-decoration: none; color: inherit; background: var(--surface);
+      border: 1px solid var(--line); border-radius: 14px; padding: 18px 18px 16px;
+      transition: transform .14s ease, border-color .14s ease, box-shadow .14s ease;
+    }
+    a.card:hover { transform: translateY(-2px); border-color: #8fb38a; box-shadow: 0 10px 26px rgba(40,48,30,.08); }
+    .card h2 { font-family: "Iowan Old Style", Palatino, Georgia, serif; font-size: 20px; letter-spacing: -.02em; margin: 0 0 4px; }
+    .card p { margin: 0; font-size: 12px; color: var(--muted); line-height: 1.45; }
+    .card small { display: inline-block; margin-top: 10px; font-size: 9px; letter-spacing: .1em; text-transform: uppercase; color: var(--green); font-weight: 800; }
+    .wide { grid-column: 1 / -1; }
+    footer { margin-top: 34px; padding-top: 16px; border-top: 1px solid var(--line); display: flex; flex-wrap: wrap; gap: 8px 18px; font-size: 10.5px; color: var(--muted); }
+    footer a { color: var(--green); }
+    @media (max-width: 640px) { .grid { grid-template-columns: 1fr; } h1 { margin-top: 26px; } }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <img src="../assets/favicon.svg" alt="">
+      <div class="brand">PlateWise <span>3D</span></div>
+      <a class="back" href="../">← Back to the plate</a>
+    </header>
+
+    <h1>Documentation</h1>
+    <p class="lede">The durable handoff for PlateWise 3D: how the nutrition model works, why the code is shaped this way, how to verify it, and how to rebuild it from an empty directory.</p>
+    <div class="meta">
+      <span class="pill">v1.0.0</span>
+      <span class="pill">Static · no backend</span>
+      <span class="pill">MIT</span>
+      <span class="pill">18 foods · 6 warnings · 6 swaps</span>
+      <span class="pill">47 browser checks · 29 in-page checks</span>
+    </div>
+
+    <div class="grid">
+      <a class="card wide" href="https://github.com/somphol/platewise-3d/blob/main/docs/NUTRITION.md">
+        <h2>Nutrition methodology →</h2>
+        <p>Every per-serving value, the net-carb convention, the Glycemic Safety Score formula, the curve equations and worked arithmetic. Start here if you are checking a number.</p>
+        <small>Read on GitHub</small>
+      </a>
+      <a class="card" href="https://github.com/somphol/platewise-3d/blob/main/docs/ARCHITECTURE.md">
+        <h2>Architecture</h2>
+        <p>State, scene graph, slots, chart, events, test API and extension recipes.</p>
+        <small>Read on GitHub</small>
+      </a>
+      <a class="card" href="https://github.com/somphol/platewise-3d/blob/main/docs/SOURCES.md">
+        <h2>Sources</h2>
+        <p>ADA Standards of Care, USDA FoodData Central, NIH/PubMed and GI tables, with what each is used for.</p>
+        <small>Read on GitHub</small>
+      </a>
+      <a class="card" href="https://github.com/somphol/platewise-3d/blob/main/docs/REPRODUCTION.md">
+        <h2>Reproduction blueprint</h2>
+        <p>The shortest honest path to rebuild the app, including the bugs that are easy to repeat.</p>
+        <small>Read on GitHub</small>
+      </a>
+      <a class="card" href="https://github.com/somphol/platewise-3d/blob/main/docs/TESTING.md">
+        <h2>Testing</h2>
+        <p>Three verification layers, the Chrome flags that avoid Keychain prompts, and expected counts.</p>
+        <small>Read on GitHub</small>
+      </a>
+      <a class="card" href="https://github.com/somphol/platewise-3d/blob/main/docs/DEPLOYMENT.md">
+        <h2>Deployment</h2>
+        <p>GitHub Pages, cache behaviour, custom domains, rollback and fork checklist.</p>
+        <small>Read on GitHub</small>
+      </a>
+      <a class="card" href="https://github.com/somphol/platewise-3d/blob/main/docs/DECISIONS.md">
+        <h2>Decisions</h2>
+        <p>Why three files, why starch is excluded, why the curve is deterministic and what not to change casually.</p>
+        <small>Read on GitHub</small>
+      </a>
+      <a class="card" href="https://github.com/somphol/platewise-3d/blob/main/docs/PRIVACY.md">
+        <h2>Privacy</h2>
+        <p>The two localStorage keys, the single CDN request and what is never collected.</p>
+        <small>Read on GitHub</small>
+      </a>
+      <a class="card" href="https://github.com/somphol/platewise-3d/blob/main/docs/ACCESSIBILITY.md">
+        <h2>Accessibility</h2>
+        <p>What is implemented, the keyboard paths and the limitations that remain.</p>
+        <small>Read on GitHub</small>
+      </a>
+      <a class="card" href="https://github.com/somphol/platewise-3d/blob/main/docs/STATE.md">
+        <h2>Build state</h2>
+        <p>Wall-clock time, token usage, verification totals and credits for the reference build.</p>
+        <small>Read on GitHub</small>
+      </a>
+      <a class="card" href="https://github.com/somphol/platewise-3d/blob/main/AGENTS.md">
+        <h2>AGENTS.md</h2>
+        <p>The one-minute handoff for the next coding agent: commands, constraints and known issues.</p>
+        <small>Read on GitHub</small>
+      </a>
+      <a class="card" href="https://github.com/somphol/platewise-3d/blob/main/README.md">
+        <h2>Product README</h2>
+        <p>Screenshots, features, quick start, evidence summary and credits.</p>
+        <small>Read on GitHub</small>
+      </a>
+    </div>
+
+    <footer>
+      <span>© 2026 Somphol Boonjing · MIT</span>
+      <a href="../">Live app</a>
+      <a href="https://github.com/somphol/platewise-3d">GitHub repository</a>
+      <a href="https://somphol.github.io/platewise-3d-skill/">Skill catalog</a>
+      <span>Not medical advice.</span>
+    </footer>
+  </div>
+</body>
+</html>

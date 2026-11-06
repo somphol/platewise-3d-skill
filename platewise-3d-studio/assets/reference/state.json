@@ -1,0 +1,113 @@
+{
+  "schema": 1,
+  "project": "PlateWise 3D",
+  "release": {
+    "version": "1.0.0",
+    "name": "Non-Starchy Whole Food Picker",
+    "license": "MIT",
+    "releasedAt": "2026-11-06T05:35:51.192Z"
+  },
+  "session": {
+    "id": "ses_e50cc1dc6ffekm230esZitx60J",
+    "title": "PlateWise 3D food picker project",
+    "directory": "/Users/somphol",
+    "startedAt": "2026-11-06T04:52:55.509Z",
+    "capturedAt": "2026-11-06T05:35:51.192Z",
+    "elapsedSeconds": 2576,
+    "elapsed": "0h 42m 56s",
+    "note": "Wall-clock build time from the OpenCode session start through local verification, documentation and release. Captured just before the final state commit; use the timestamps as the source of truth. Not an estimate of model-only time."
+  },
+  "model": {
+    "name": "DeepSeek V4.1 Flash",
+    "id": "deepseek-v4.1-flash",
+    "provider": "opencode-go",
+    "modelField": "{\"id\":\"deepseek-v4.1-flash\",\"providerID\":\"opencode-go\"}"
+  },
+  "usage": {
+    "inputTokens": 60500,
+    "outputTokens": 140537,
+    "reasoningTokens": 74661,
+    "cacheReadTokens": 25188736,
+    "cacheWriteTokens": 1408,
+    "totalTokens": 25465842,
+    "costUSD": 0,
+    "note": "Read from the OpenCode session database (session_v2) with scripts/capture-state.mjs. totalTokens is the sum of all five counters, including prompt context read repeatedly from cache; cache reads dominate the figure. costUSD is 0 on the flat-rate plan."
+  },
+  "artifacts": {
+    "appFiles": [
+      "index.html",
+      "style.css",
+      "script.js"
+    ],
+    "docs": [
+      "README.md",
+      "AGENTS.md",
+      "CHANGELOG.md",
+      "CONTRIBUTING.md",
+      "CODE_OF_CONDUCT.md",
+      "SECURITY.md",
+      "SUPPORT.md",
+      "ROADMAP.md",
+      "CITATION.cff",
+      "THIRD_PARTY_NOTICES.md",
+      "docs/README.md",
+      "docs/ARCHITECTURE.md",
+      "docs/NUTRITION.md",
+      "docs/SOURCES.md",
+      "docs/DECISIONS.md",
+      "docs/TESTING.md",
+      "docs/DEPLOYMENT.md",
+      "docs/REPRODUCTION.md",
+      "docs/PRIVACY.md",
+      "docs/ACCESSIBILITY.md",
+      "docs/PERFORMANCE.md",
+      "docs/FAQ.md",
+      "docs/STATE.md",
+      "docs/BUILD-LOG.md"
+    ],
+    "content": {
+      "safeFoods": 18,
+      "warningFoods": 6,
+      "swaps": 6,
+      "evidenceSources": 6,
+      "plateZones": 3,
+      "browserChecks": 47,
+      "selftestChecks": 29,
+      "staticChecks": 22,
+      "liveChecks": 47
+    }
+  },
+  "verification": {
+    "method": "Node built-in test runner for static invariants; a dependency-free headless Chrome harness over the DevTools Protocol for the real UI; a 29-check in-page suite for the deployed copy. Chrome uses --use-mock-keychain and a throwaway profile so macOS does not prompt repeatedly.",
+    "checks": [
+      "47/47 local headless Chrome checks: boot, WebGL, placement, warnings, swaps, search, curve, persistence, theme, mobile, accessibility",
+      "29/29 in-page self-test checks, including data integrity, storage round trip and live WebGL",
+      "22 static/release invariant tests",
+      "47/47 live GitHub Pages checks",
+      "0 console errors and uncaught exceptions in the local suite"
+    ],
+    "consoleErrors": 0
+  },
+  "deployment": {
+    "repository": "https://github.com/somphol/platewise-3d",
+    "pages": "https://somphol.github.io/platewise-3d/",
+    "host": "GitHub Pages",
+    "branch": "main",
+    "path": "/"
+  },
+  "credits": {
+    "tool": "OpenCode",
+    "toolURL": "https://opencode.ai",
+    "model": "DeepSeek V4.1 Flash",
+    "modelID": "opencode-go/deepseek-v4.1-flash",
+    "visualization": "Three.js 0.169.0 (MIT)",
+    "data": "USDA FoodData Central; ADA Standards of Care; NIH/PubMed; international GI tables",
+    "author": "Somphol Boonjing"
+  },
+  "skill": {
+    "name": "platewise-3d-studio",
+    "repository": "https://github.com/somphol/platewise-3d-skill",
+    "catalog": "https://somphol.github.io/platewise-3d-skill/",
+    "note": "Published skill backup with the reference source, scaffold and verification harness."
+  }
+}

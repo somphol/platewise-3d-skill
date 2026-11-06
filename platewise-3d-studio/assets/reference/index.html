@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>PlateWise 3D — Non-Starchy Whole Food Picker</title>
+  <meta name="description" content="Build a 3D plate of non-starchy whole foods, see net carbs, fiber and a glycemic safety score in real time, and preview a simulated glucose curve. No accounts, no tracking, no starchy guesswork.">
+  <meta name="theme-color" content="#f5f1e6">
+  <meta name="color-scheme" content="light dark">
+  <link rel="canonical" href="https://somphol.github.io/platewise-3d/">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="style.css">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="PlateWise 3D — Non-Starchy Whole Food Picker">
+  <meta property="og:description" content="A calm, evidence-grounded 3D plate builder for people managing blood sugar. Place whole foods, watch net carbs and glycemic load, and preview the curve.">
+  <meta property="og:url" content="https://somphol.github.io/platewise-3d/">
+  <meta property="og:image" content="https://somphol.github.io/platewise-3d/assets/og.png">
+  <meta property="og:image:alt" content="A white dinner plate divided into veggie, protein and fat zones, surrounded by whole foods.">
+  <meta property="og:site_name" content="PlateWise 3D">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="PlateWise 3D — Non-Starchy Whole Food Picker">
+  <meta name="twitter:description" content="Place whole foods on a 3D plate. See net carbs, fiber, glycemic load and a simulated glucose curve instantly.">
+  <meta name="twitter:image" content="https://somphol.github.io/platewise-3d/assets/og.png">
+
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.169.0/build/three.module.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.169.0/examples/jsm/"
+    }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "PlateWise 3D",
+    "url": "https://somphol.github.io/platewise-3d/",
+    "applicationCategory": "HealthApplication",
+    "operatingSystem": "Any modern browser",
+    "isAccessibleForFree": true,
+    "description": "A 3D non-starchy whole-food plate builder with net-carb, fiber, glycemic-load and simulated glucose-curve feedback.",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+    "author": { "@type": "Person", "name": "Somphol Boonjing" },
+    "license": "https://opensource.org/licenses/MIT"
+  }
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#plate-builder">Skip to the plate builder</a>
+
+  <header class="site-header">
+    <div class="brand">
+      <span class="brand-mark" aria-hidden="true">
+        <svg viewBox="0 0 40 40" role="img" focusable="false">
+          <circle cx="20" cy="20" r="17.5" fill="none" stroke="currentColor" stroke-width="2.2"/>
+          <path d="M20 2.5a17.5 17.5 0 0 1 0 35Z" fill="currentColor" opacity=".18"/>
+          <path d="M20 2.5v35M2.5 20h35" stroke="currentColor" stroke-width="1.5" opacity=".55"/>
+          <circle cx="29" cy="12" r="3.2" fill="#7ac142"/>
+          <circle cx="31" cy="27" r="2.5" fill="#e9a23b"/>
+        </svg>
+      </span>
+      <span class="brand-copy">
+        <span class="brand-name">PlateWise <span class="brand-3d">3D</span></span>
+        <span class="brand-tag">Non-starchy whole food picker</span>
+      </span>
+    </div>
+
+    <nav class="site-nav" aria-label="Sections">
+      <a href="#plate-builder">Plate</a>
+      <a href="#food-search">Foods</a>
+      <a href="#cgm-section">Glucose</a>
+      <a href="#meal-log">Log</a>
+      <a href="#sources">Sources</a>
+    </nav>
+
+    <div class="header-actions">
+      <button class="icon-btn" id="btn-theme" type="button" aria-label="Switch to dark theme" title="Switch theme">
+        <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2v2.4M12 19.6V22M2 12h2.4M19.6 12H22M4.9 4.9l1.7 1.7M17.4 17.4l1.7 1.7M19.1 4.9l-1.7 1.7M6.6 17.4l-1.7 1.7"/></svg>
+        <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.2A8.2 8.2 0 0 1 9.8 4a8.4 8.4 0 1 0 10.2 10.2Z"/></svg>
+      </button>
+      <button class="ghost-btn" id="btn-guide" type="button">How it works</button>
+      <button class="solid-btn" id="btn-sources" type="button">Evidence</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="intro" aria-labelledby="page-title">
+      <div class="intro-copy">
+        <p class="eyebrow"><span class="pulse-dot" aria-hidden="true"></span> Whole food · Low glycemic · No guesswork</p>
+        <h1 id="page-title">Build a plate that keeps your blood sugar <em>calm</em>.</h1>
+        <p class="lede">Place non-starchy vegetables, quality protein and healthy fats on a 3D plate. PlateWise filters out starches and ultra-processed foods, then shows net carbs, fiber, glycemic load and a simulated glucose curve as you go.</p>
+        <div class="intro-actions">
+          <button class="solid-btn large" id="btn-example" type="button">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+            Build a balanced plate
+          </button>
+          <button class="ghost-btn large" id="btn-intro-guide" type="button">Take the 60-second tour</button>
+        </div>
+      </div>
+      <dl class="intro-stats" aria-label="What is inside">
+        <div><dt>18</dt><dd>whole foods</dd></div>
+        <div><dt>50/25/25</dt><dd>plate method</dd></div>
+        <div><dt>6</dt><dd>smart swaps</dd></div>
+        <div><dt>0</dt><dd>accounts or trackers</dd></div>
+      </dl>
+    </section>
+
+    <section class="builder-grid" id="plate-builder" aria-label="3D plate builder">
+      <!-- ============ FOOD PALETTE ============ -->
+      <aside class="panel palette" id="food-search" aria-labelledby="palette-title">
+        <div class="panel-head">
+          <div>
+            <p class="panel-kicker">Step 1</p>
+            <h2 id="palette-title">Pick whole foods</h2>
+          </div>
+          <span class="count-badge" id="food-count" aria-live="polite">18 foods</span>
+        </div>
+
+        <div class="search-wrap">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m15.4 15.4 5 5"/></svg>
+          <input id="food-search-input" type="search" placeholder="Search broccoli, salmon, rice…" autocomplete="off" aria-label="Search foods and cravings" aria-describedby="search-hint">
+          <button class="search-clear" id="search-clear" type="button" aria-label="Clear search" hidden>&times;</button>
+        </div>
+        <p class="search-hint" id="search-hint">Try “leafy”, “protein” or a craving like “pasta”. Press <kbd>/</kbd> to search.</p>
+
+        <div class="chip-row" role="group" aria-label="Filter by category">
+          <button class="chip is-active" type="button" data-filter="all" aria-pressed="true">All</button>
+          <button class="chip" type="button" data-filter="leafy" aria-pressed="false">Leafy greens</button>
+          <button class="chip" type="button" data-filter="cruciferous" aria-pressed="false">Cruciferous</button>
+          <button class="chip" type="button" data-filter="veg" aria-pressed="false">Veggies</button>
+          <button class="chip" type="button" data-filter="protein" aria-pressed="false">Proteins</button>
+          <button class="chip" type="button" data-filter="fat" aria-pressed="false">Healthy fats</button>
+          <button class="chip" type="button" data-filter="berry" aria-pressed="false">Berries</button>
+        </div>
+
+        <div class="food-grid" id="food-grid"></div>
+        <p class="empty-results" id="empty-results" hidden>No whole food matches that search. Try “greens”, “salmon” or “avocado”.</p>
+
+        <details class="watchouts" id="watchouts">
+          <summary>
+            <span class="watchouts-icon" aria-hidden="true">!</span>
+            <span>Starch &amp; processed watch-outs</span>
+            <span class="summary-meta">6 traps</span>
+          </summary>
+          <p class="watchouts-intro">Tap one to see why it spikes and what to put on the plate instead. These are never added to your plate.</p>
+          <div class="watchout-list" id="watchout-list"></div>
+        </details>
+
+        <p class="micro-note"><strong>Every item is a whole food.</strong> No grains, no potatoes, no added sugar, no ultra-processed substitutes.</p>
+      </aside>
+
+      <!-- ============ 3D STAGE ============ -->
+      <section class="stage-column" aria-labelledby="stage-title">
+        <h2 class="sr-only" id="stage-title">Your 3D plate</h2>
+        <div class="stage-card">
+          <div class="stage-wrap" id="stage-wrap">
+            <canvas id="scene" aria-label="Interactive 3D dinner plate. Drag to orbit, scroll to zoom, and select a placed food to inspect it." role="img"></canvas>
+
+            <div class="stage-loading" id="stage-loading" aria-hidden="true">
+              <span class="loader-ring"></span>
+              <span>Setting the table…</span>
+            </div>
+
+            <div class="stage-hud" id="stage-hud" aria-live="polite">
+              <div class="hud-score">
+                <span class="hud-label">Safety score</span>
+                <span class="hud-score-value" id="hud-score">—</span>
+              </div>
+              <div class="hud-divider" aria-hidden="true"></div>
+              <div class="hud-stat"><span class="hud-label">Net carbs</span><span class="hud-value"><span id="hud-carbs">0.0</span><small>g</small></span></div>
+              <div class="hud-stat"><span class="hud-label">Fiber</span><span class="hud-value"><span id="hud-fiber">0.0</span><small>g</small></span></div>
+              <div class="hud-stat"><span class="hud-label">Glycemic load</span><span class="hud-value"><span id="hud-gl">0.0</span></span></div>
+            </div>
+
+            <div class="stage-tools" role="toolbar" aria-label="3D view controls">
+              <button class="stage-tool" id="btn-rotate" type="button" aria-pressed="true" aria-label="Pause automatic rotation" title="Auto-rotate">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11a8 8 0 1 0-2.3 6.6"/><path d="M20 4v7h-7"/></svg>
+              </button>
+              <button class="stage-tool" id="btn-reset-view" type="button" aria-label="Reset camera view" title="Reset view">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9V4h5M20 15v5h-5M20 9V4h-5M4 15v5h5"/></svg>
+              </button>
+              <button class="stage-tool" id="btn-fullscreen" type="button" aria-label="Enter fullscreen" title="Fullscreen">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 3H3v5M16 3h5v5M21 16v5h-5M3 16v5h5"/></svg>
+              </button>
+            </div>
+
+            <div class="plate-empty" id="plate-empty">
+              <span class="plate-empty-ring" aria-hidden="true"></span>
+              <strong>Your plate is empty</strong>
+              <span>Tap a food from the pantry — or build a balanced plate in one click.</span>
+              <button class="ghost-btn small" id="btn-empty-example" type="button">Show me a balanced plate</button>
+            </div>
+
+            <div class="zone-legend" aria-label="Plate zones">
+              <span class="zone-dot veg"></span><span class="zone-item"><strong>50%</strong> non-starchy veg</span>
+              <span class="zone-dot protein"></span><span class="zone-item"><strong>25%</strong> protein</span>
+              <span class="zone-dot fat"></span><span class="zone-item"><strong>25%</strong> fats &amp; seeds</span>
+            </div>
+
+            <div class="stage-hint" id="stage-hint">Drag to orbit · scroll to zoom · tap food to inspect</div>
+          </div>
+
+          <div class="stage-actions">
+            <div class="stage-actions-main">
+              <button class="ghost-btn small" id="btn-clear" type="button">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M9 7V4h6v3M6 7l1 13h10l1-13"/></svg>
+                Clear plate
+              </button>
+              <button class="ghost-btn small" id="btn-surprise" type="button">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M18.4 5.6l-2.1 2.1M7.7 16.3l-2.1 2.1"/><circle cx="12" cy="12" r="3.4"/></svg>
+                Surprise me
+              </button>
+              <span class="stage-count" id="plate-count">0 servings</span>
+            </div>
+            <button class="solid-btn small" id="btn-save-open" type="button">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h11l3 3v13H5z"/><path d="M8 4v6h8V4M8 20v-6h8v6"/></svg>
+              Save this meal
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ INSIGHTS ============ -->
+      <aside class="panel insights" aria-label="Plate analysis">
+        <section class="score-card" aria-labelledby="score-title">
+          <div class="score-ring-wrap">
+            <svg class="score-ring" viewBox="0 0 120 120" role="img" aria-labelledby="score-ring-label">
+              <title id="score-ring-label">Glycemic safety score</title>
+              <circle class="ring-track" cx="60" cy="60" r="50"/>
+              <circle class="ring-value" id="ring-value" cx="60" cy="60" r="50" stroke-dasharray="0 314.16"/>
+            </svg>
+            <div class="score-ring-center">
+              <span class="score-number" id="score-number">0</span>
+              <span class="score-of">/ 100</span>
+            </div>
+          </div>
+          <div class="score-copy">
+            <p class="panel-kicker">Live analysis</p>
+            <h2 id="score-title">Glycemic safety</h2>
+            <p class="score-band" id="score-band">Empty plate</p>
+            <p class="score-advice" id="score-advice">Add a vegetable, a protein and a fat to see how the plate balances.</p>
+          </div>
+        </section>
+
+        <div class="macro-grid" aria-label="Plate totals">
+          <div class="macro"><span class="macro-label">Net carbs</span><span class="macro-value" id="macro-carbs">0.0<small>g</small></span><span class="macro-note" id="macro-carbs-note">of a 30 g gentle target</span></div>
+          <div class="macro"><span class="macro-label">Fiber</span><span class="macro-value" id="macro-fiber">0.0<small>g</small></span><span class="macro-note" id="macro-fiber-note">aim for 8 g+</span></div>
+          <div class="macro"><span class="macro-label">Protein</span><span class="macro-value" id="macro-protein">0.0<small>g</small></span><span class="macro-note">satiety anchor</span></div>
+          <div class="macro"><span class="macro-label">Calories</span><span class="macro-value" id="macro-kcal">0<small>kcal</small></span><span class="macro-note">whole-food estimate</span></div>
+        </div>
+
+        <section class="zone-balance" aria-labelledby="zone-title">
+          <div class="subhead"><h3 id="zone-title">Plate balance</h3><span class="subhead-meta" id="balance-note">0 servings</span></div>
+          <div class="balance-row"><span class="balance-label"><i class="zone-dot veg"></i>Veg</span><div class="balance-track"><span class="balance-fill veg" id="balance-veg"></span></div><span class="balance-target">50%</span></div>
+          <div class="balance-row"><span class="balance-label"><i class="zone-dot protein"></i>Protein</span><div class="balance-track"><span class="balance-fill protein" id="balance-protein"></span></div><span class="balance-target">25%</span></div>
+          <div class="balance-row"><span class="balance-label"><i class="zone-dot fat"></i>Fats</span><div class="balance-track"><span class="balance-fill fat" id="balance-fat"></span></div><span class="balance-target">25%</span></div>
+        </section>
+
+        <details class="score-method">
+          <summary>How the score is calculated</summary>
+          <p>The score rewards fiber, protein and vegetable share, then subtracts glycemic load and net carbohydrate density. It is a teaching aid, not a prediction of your personal glucose response.</p>
+          <code>96 − 1.7·GL − 0.45·netCarbs + min(8, 0.55·fiber) + min(6, 0.08·protein) + 8·vegShare</code>
+          <p class="tiny">Clamped to 0–100 and rounded. See <a href="docs/NUTRITION.md">NUTRITION.md</a> for worked examples.</p>
+        </details>
+
+        <section class="plate-list-section" aria-labelledby="plate-list-title">
+          <div class="subhead"><h3 id="plate-list-title">On the plate</h3><button class="text-btn" id="btn-clear-2" type="button">Clear all</button></div>
+          <ul class="plate-list" id="plate-list"></ul>
+          <p class="plate-list-empty" id="plate-list-empty">Nothing yet. Each serving you add is listed here with its net carbs.</p>
+          <div class="selected-card" id="selected-card" hidden aria-live="polite">
+            <div class="selected-head"><span class="selected-name" id="selected-name">—</span><button class="icon-btn tiny" id="selected-close" type="button" aria-label="Close food details">&times;</button></div>
+            <p class="selected-meta" id="selected-meta"></p>
+            <p class="selected-why" id="selected-why"></p>
+            <button class="ghost-btn tiny" id="selected-remove" type="button">Remove from plate</button>
+          </div>
+        </section>
+
+        <section class="cgm-card" id="cgm-section" aria-labelledby="cgm-title">
+          <div class="subhead">
+            <div>
+              <p class="panel-kicker">Simulation, not a sensor</p>
+              <h3 id="cgm-title">Glucose curve preview</h3>
+            </div>
+            <span class="live-pill"><span class="pulse-dot" aria-hidden="true"></span>Live</span>
+          </div>
+          <div class="cgm-canvas-wrap">
+            <canvas id="cgm-chart" role="img" aria-label="Simulated 180-minute glucose curves for your plate and a reference starchy meal"></canvas>
+          </div>
+          <div class="cgm-legend">
+            <span><i class="line-swatch safe"></i>Your plate <strong id="cgm-safe-peak">—</strong></span>
+            <span><i class="line-swatch starch"></i>Starchy reference <strong id="cgm-starch-peak">—</strong></span>
+          </div>
+          <div class="cgm-facts">
+            <div><span>Peak rise</span><strong id="cgm-rise">—</strong></div>
+            <div><span>Time to peak</span><strong id="cgm-time">—</strong></div>
+            <div><span>Est. load</span><strong id="cgm-load">—</strong></div>
+          </div>
+          <p class="cgm-note" id="cgm-note">Add food to compare your plate with a rice-and-potato reference meal. Curves are illustrative population averages, not your CGM.</p>
+        </section>
+
+        <section class="swaps-card" aria-labelledby="swaps-title">
+          <div class="subhead">
+            <div>
+              <p class="panel-kicker">Cravings, redirected</p>
+              <h3 id="swaps-title">Smart swaps</h3>
+            </div>
+            <span class="subhead-meta" id="swaps-meta">6 swaps</span>
+          </div>
+          <div class="swap-list" id="swap-list"></div>
+        </section>
+
+        <section class="log-card" id="meal-log" aria-labelledby="log-title">
+          <div class="subhead">
+            <div>
+              <p class="panel-kicker">Saved on this device</p>
+              <h3 id="log-title">Meal log</h3>
+            </div>
+            <div class="log-actions">
+              <button class="icon-btn tiny" id="btn-export-log" type="button" aria-label="Export meal log as JSON" title="Export JSON">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg>
+              </button>
+              <button class="icon-btn tiny" id="btn-clear-log" type="button" aria-label="Delete all saved meals" title="Delete all">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M9 7V4h6v3M6 7l1 13h10l1-13"/></svg>
+              </button>
+            </div>
+          </div>
+          <ul class="log-list" id="log-list"></ul>
+          <p class="log-empty" id="log-empty">Saved meals appear here. Everything stays in this browser — nothing is uploaded.</p>
+        </section>
+      </aside>
+    </section>
+
+    <section class="principles" aria-labelledby="principles-title">
+      <div class="principles-head">
+        <p class="eyebrow">The method, in plain language</p>
+        <h2 id="principles-title">Why this plate works</h2>
+      </div>
+      <div class="principle-grid">
+        <article><span class="principle-num">01</span><h3>Half the plate is non-starchy veg</h3><p>Volume, water, fiber and micronutrients with very little available carbohydrate. Broccoli, greens, cauliflower, zucchini and peppers do the heavy lifting.</p></article>
+        <article><span class="principle-num">02</span><h3>A palm of protein</h3><p>Salmon, eggs, chicken or tofu anchor satiety. Protein does not raise glucose appreciably on its own and tends to blunt the next craving.</p></article>
+        <article><span class="principle-num">03</span><h3>Fats and seeds, measured</h3><p>Avocado, nuts, olive oil and chia add mouthfeel and slow digestion. They are calorie-dense, so the plate keeps portions honest.</p></article>
+        <article><span class="principle-num">04</span><h3>Starch stays off the plate</h3><p>Rice, potatoes, bread, pasta and fries are the fastest route to a post-meal spike. PlateWise redirects each one to a whole-food swap instead of shaming the craving.</p></article>
+      </div>
+    </section>
+
+    <section class="sources" id="sources" aria-labelledby="sources-title">
+      <div class="sources-copy">
+        <p class="eyebrow">Receipts, not vibes</p>
+        <h2 id="sources-title">Grounded in published evidence</h2>
+        <p>Nutrition numbers are per-serving estimates derived from USDA FoodData Central. Glycemic index values are drawn from published international tables and are used with their real-world variability in mind. The plate method and carbohydrate-aware advice follow the American Diabetes Association's Standards of Care and nutrition consensus report. Peer-reviewed carbohydrate-restriction research is cited for context, not as a promise.</p>
+        <div class="sources-actions">
+          <button class="solid-btn small" id="btn-sources-2" type="button">Read the full source list</button>
+          <a class="text-btn" href="docs/NUTRITION.md">Nutrition methodology →</a>
+        </div>
+      </div>
+      <ul class="source-pills">
+        <li><span>ADA</span><small>Standards of Care</small></li>
+        <li><span>USDA</span><small>FoodData Central</small></li>
+        <li><span>NIH</span><small>PubMed research</small></li>
+        <li><span>GI</span><small>International tables</small></li>
+      </ul>
+    </section>
+
+    <section class="disclaimer" aria-label="Medical disclaimer">
+      <strong>Not medical advice.</strong>
+      <p>PlateWise is an educational visualization. Glycemic responses vary with medication, activity, sleep, portion size, food preparation and individual biology. Do not start, stop or change treatment based on this app. Ask your clinician or a registered dietitian what fits you.</p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div>
+      <span class="brand-name">PlateWise <span class="brand-3d">3D</span></span>
+      <p>A static, open-source plate studio. No backend, no accounts, no analytics.</p>
+    </div>
+    <div class="footer-links">
+      <a href="docs/README.md">Documentation</a>
+      <a href="docs/NUTRITION.md">Methodology</a>
+      <a href="docs/SOURCES.md">Sources</a>
+      <a href="docs/PRIVACY.md">Privacy</a>
+      <a href="https://github.com/somphol/platewise-3d">GitHub</a>
+      <a href="https://opencode.ai">Built with OpenCode</a>
+    </div>
+    <p class="footer-fine">© 2026 Somphol Boonjing · MIT License · Nutrition data rounded for teaching · <a href="?selftest">Run self-test</a></p>
+  </footer>
+
+  <!-- ============ DIALOGS ============ -->
+  <dialog class="modal" id="warning-dialog" aria-labelledby="warning-title" aria-describedby="warning-desc">
+    <div class="modal-stripe warn" aria-hidden="true"></div>
+    <div class="modal-body">
+      <button class="modal-close" type="button" data-close-dialog aria-label="Close warning">&times;</button>
+      <p class="modal-kicker" id="warning-kicker">Starch alert</p>
+      <h2 id="warning-title">That one will spike.</h2>
+      <p class="modal-lede" id="warning-desc"></p>
+      <div class="warning-stats" id="warning-stats"></div>
+      <div class="warning-why">
+        <h3>What is happening</h3>
+        <p id="warning-why"></p>
+      </div>
+      <div class="warning-swap">
+        <h3>Put this on the plate instead</h3>
+        <div class="warning-swap-list" id="warning-swap-list"></div>
+      </div>
+      <div class="modal-actions">
+        <button class="ghost-btn" type="button" data-close-dialog>Keep it off my plate</button>
+        <button class="solid-btn" type="button" id="warning-build-swap">Build the safe swap</button>
+      </div>
+      <p class="modal-source" id="warning-source"></p>
+    </div>
+  </dialog>
+
+  <dialog class="modal guide-modal" id="guide-dialog" aria-labelledby="guide-title">
+    <div class="modal-stripe safe" aria-hidden="true"></div>
+    <div class="modal-body">
+      <button class="modal-close" type="button" data-close-dialog aria-label="Close guide">&times;</button>
+      <p class="modal-kicker">60-second tour</p>
+      <h2 id="guide-title">How PlateWise works</h2>
+      <ol class="guide-steps">
+        <li><span>1</span><div><strong>Pick a whole food.</strong><p>The pantry only contains non-starchy vegetables, quality protein, healthy fats and low-GI berries. Search by name, category or craving.</p></div></li>
+        <li><span>2</span><div><strong>Watch the plate, not a spreadsheet.</strong><p>Each serving lands in its 50/25/25 zone. The HUD updates net carbs, fiber, glycemic load and a safety score immediately.</p></div></li>
+        <li><span>3</span><div><strong>Preview the curve.</strong><p>The glucose chart compares your plate with a reference rice-and-potato meal. It is a teaching model, not a CGM reading.</p></div></li>
+        <li><span>4</span><div><strong>Swap the craving.</strong><p>Rice becomes cauliflower rice. Pasta becomes zucchini noodles. Tap a swap to put the alternative on the plate.</p></div></li>
+        <li><span>5</span><div><strong>Save what worked.</strong><p>Meals are stored only in this browser's local storage. Export the log as JSON any time.</p></div></li>
+      </ol>
+      <div class="guide-keys">
+        <h3>Keyboard</h3>
+        <p><kbd>/</kbd> search · <kbd>Esc</kbd> close · <kbd>R</kbd> rotate · <kbd>G</kbd> guide · <kbd>1</kbd>–<kbd>6</kbd> filters</p>
+      </div>
+      <div class="modal-actions"><button class="solid-btn" type="button" data-close-dialog>Start building</button></div>
+    </div>
+  </dialog>
+
+  <dialog class="modal sources-modal" id="sources-dialog" aria-labelledby="sources-dialog-title">
+    <div class="modal-stripe neutral" aria-hidden="true"></div>
+    <div class="modal-body">
+      <button class="modal-close" type="button" data-close-dialog aria-label="Close sources">&times;</button>
+      <p class="modal-kicker">Evidence base</p>
+      <h2 id="sources-dialog-title">Where the numbers come from</h2>
+      <p class="modal-lede">PlateWise is deliberately conservative about precision. Values are rounded, servings are explicit, and glycemic index is treated as a population average rather than a personal prophecy.</p>
+      <div class="source-list" id="source-list"></div>
+      <div class="modal-actions"><button class="solid-btn" type="button" data-close-dialog>Close</button></div>
+    </div>
+  </dialog>
+
+  <dialog class="modal save-modal" id="save-dialog" aria-labelledby="save-title">
+    <div class="modal-stripe safe" aria-hidden="true"></div>
+    <div class="modal-body">
+      <button class="modal-close" type="button" data-close-dialog aria-label="Close save dialog">&times;</button>
+      <p class="modal-kicker">Local only</p>
+      <h2 id="save-title">Save this plate</h2>
+      <p class="modal-lede">Give the meal a name. It is stored in this browser and never uploaded.</p>
+      <form id="save-form">
+        <label for="save-name">Meal name</label>
+        <input id="save-name" name="name" type="text" maxlength="60" required placeholder="e.g. Salmon &amp; broccoli dinner" autocomplete="off">
+        <div class="save-preview" id="save-preview"></div>
+        <div class="modal-actions">
+          <button class="ghost-btn" type="button" data-close-dialog>Cancel</button>
+          <button class="solid-btn" type="submit" id="save-submit">Save meal</button>
+        </div>
+      </form>
+    </div>
+  </dialog>
+
+  <div class="mobile-dock" id="mobile-dock" hidden>
+    <div class="dock-stat"><strong id="dock-score">0</strong><span>score</span></div>
+    <div class="dock-stat"><strong id="dock-carbs">0.0</strong><span>net carbs</span></div>
+    <button class="solid-btn small" id="dock-view" type="button">View plate</button>
+  </div>
+
+  <div class="toast-region" id="toast-region" aria-live="polite" aria-atomic="false"></div>
+
+  <section class="selftest-panel" id="selftest-panel" hidden aria-labelledby="selftest-title">
+    <div class="selftest-card">
+      <button class="modal-close" id="selftest-close" type="button" aria-label="Close self-test">&times;</button>
+      <p class="modal-kicker">In-page verification</p>
+      <h2 id="selftest-title">Self-test</h2>
+      <p id="selftest-summary">Running…</p>
+      <ul id="selftest-list"></ul>
+      <div class="modal-actions"><button class="solid-btn" type="button" id="selftest-hide">Back to the plate</button></div>
+    </div>
+  </section>
+
+  <noscript>
+    <div class="noscript">PlateWise needs JavaScript and WebGL. The nutrition data and methodology are still readable in the <a href="docs/NUTRITION.md">documentation</a>.</div>
+  </noscript>
+
+  <script type="module" src="script.js"></script>
+</body>
+</html>

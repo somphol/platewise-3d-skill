@@ -1,0 +1,38 @@
+cff-version: 1.2.0
+message: "If you use PlateWise 3D in teaching or research, cite this software record."
+type: software
+title: "PlateWise 3D: Non-Starchy Whole Food Picker"
+abstract: >-
+  A static, interactive 3D plate builder for exploring non-starchy whole foods,
+  net carbohydrates, fiber, glycemic load and an illustrative post-meal glucose
+  curve. Educational only; not a medical device.
+authors:
+  - family-names: Boonjing
+    given-names: Somphol
+version: 1.0.0
+date-released: 2026-11-05
+license: MIT
+repository-code: "https://github.com/somphol/platewise-3d"
+url: "https://somphol.github.io/platewise-3d/"
+keywords:
+  - diabetes
+  - nutrition
+  - glycemic index
+  - low-carbohydrate
+  - three.js
+  - data visualization
+  - health education
+references:
+  - type: article
+    title: "Nutrition Therapy for Adults With Diabetes or Prediabetes: A Consensus Report"
+    authors:
+      - family-names: Evert
+        given-names: Alison B.
+    journal: Diabetes Care
+    year: 2019
+    doi: 10.2337/dci19-0014
+  - type: dataset
+    title: "USDA FoodData Central"
+    authors:
+      - name: "U.S. Department of Agriculture"
+    url: "https://fdc.nal.usda.gov/"

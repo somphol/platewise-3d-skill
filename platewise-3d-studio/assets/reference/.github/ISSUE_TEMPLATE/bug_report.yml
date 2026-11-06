@@ -1,0 +1,52 @@
+name: Bug report
+description: Something behaves incorrectly or looks broken.
+title: "[bug] "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for the report. Please do not include medical or personal data.
+        For security issues, use the private advisory channel, not this form.
+  - type: input
+    id: url
+    attributes:
+      label: URL
+      description: The live URL or local path where you saw it.
+      placeholder: https://somphol.github.io/platewise-3d/
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1. Open ...
+        2. Click ...
+        3. See ...
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behaviour
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behaviour
+    validations:
+      required: true
+  - type: input
+    id: environment
+    attributes:
+      label: Browser and OS
+      placeholder: Chrome 140, macOS 15
+    validations:
+      required: true
+  - type: textarea
+    id: extra
+    attributes:
+      label: Screenshot, console errors or notes
+      description: Do not paste tokens, meal names or health information.
