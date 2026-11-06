@@ -3,7 +3,7 @@
   "skills": [
     {
       "name": "platewise-3d-studio",
-      "version": "561dde79d5a0",
+      "version": "7ed815161a52",
       "description": "Build a release-grade static Three.js non-starchy whole-food plate picker: 18 procedural foods, a 50/25/25 plate, live net carbs/fiber/glycemic load and safety score, six starch warnings and swaps, a simulated glucose curve, a local meal log, documentation, three verification layers and GitHub Pages.",
       "license": "MIT",
       "files": [

@@ -132,6 +132,21 @@ No accounts, cookies, analytics, error reporting, fonts, trackers or backend. Me
 
 Semantic landmarks, a skip link, labelled dialogs, keyboard-operable food placement and plate management, a live announcer, visible focus rings, reduced-motion handling and a 390 px layout. The 3D canvas is decorative-plus-interactive; all essential actions are duplicated in DOM controls. See [`docs/ACCESSIBILITY.md`](docs/ACCESSIBILITY.md).
 
+## Reusable skill
+
+The build is packaged as an OpenCode skill so another agent can scaffold the same
+app, keep the nutrition boundaries and verify it:
+
+- **Skill repository:** <https://github.com/somphol/platewise-3d-skill>
+- **Catalog:** <https://somphol.github.io/platewise-3d-skill/>
+- **Install:** add `"https://somphol.github.io/platewise-3d-skill/"` to the
+  `skills` array in `opencode.jsonc`, then use `@platewise-3d-studio`.
+- **Scaffold:** `node scripts/new-project.mjs --out ~/Projects/my-platewise`
+
+The skill carries the complete reference app, the construction method, the
+nutrition and scene references, the regression log and a catalog-safe copy of the
+CI templates.
+
 ## Credits
 
 - **Concept, build and release:** Somphol Boonjing

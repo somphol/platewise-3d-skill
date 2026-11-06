@@ -86,15 +86,35 @@ directly. This is the single most important bug for a reimplementation to avoid.
 - Reproduction notes include the exact scene angles, slots, score and curve
   formulas, and the mistakes above.
 
-## Later — Publish, state, skill
+## 21:33 — Published and verified
 
-- Push to `somphol/platewise-3d`, enable Pages on `main` / root, run the live
-  suite.
-- Capture `state.json` from `session_v2`: start time, elapsed wall clock, all
-  five token counters, model/provider, artifact counts and verification totals.
-- Turn the build into the `platewise-3d-studio` skill, scaffold a clean copy from
-  it, verify, and publish the backup repo + Pages catalog.
-- Regenerate screenshots after any visual change made during documentation.
+- Created `somphol/platewise-3d`, pushed `main`, enabled Pages on `main` / root.
+- `/`, `/docs/`, `/404.html` and `/sitemap.xml` return 200.
+- Ran the live suite against the Pages URL: **47/47**, zero console errors.
+- Tagged `v1.0.0` and created a release.
+- Captured the first state snapshot from the OpenCode database (see
+  `docs/STATE.md` for the current numbers; they were captured before the skill
+  work, then refreshed at the very end).
+- Added a real `docs/index.html` because GitHub Pages does not render Markdown
+  directories.
+
+## 21:36 — Skill package
+
+- Created `platewise-3d-studio` with SKILL.md, method, nutrition, scene,
+  verification, lessons, hosting and this build log.
+- Copied the complete reference into `assets/reference/`.
+- Wrote `scripts/new-project.mjs` and `scripts/verify-skill.mjs`; scaffolded a
+  clean copy and passed 22 static + 47 browser checks there.
+- Published `somphol/platewise-3d-skill`, enabled Pages and rebuilt `index.json`
+  with a content hash.
+- Found that GitHub Pages will not serve `.github/` from a catalog. Moved the CI
+  and issue templates to `templates/github/` and made the scaffold restore
+  `.github/`; the static suite accepts either location.
+- Downloaded all 68 catalog files over HTTPS, ran the static and browser suites
+  against the downloaded reference, then scaffolded from the catalog and ran
+  both suites again. All passed.
+- Refreshed `state.json` after the skill work so the recorded time and tokens
+  cover the whole reference build, not just the app.
 
 ## Lessons for the next agent
 
