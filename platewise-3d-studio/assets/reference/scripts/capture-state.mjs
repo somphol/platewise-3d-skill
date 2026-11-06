@@ -60,7 +60,7 @@ const state = {
   schema: 1,
   project: 'PlateWise 3D',
   release: {
-    version: '1.0.0',
+    version: '1.1.0',
     name: 'Non-Starchy Whole Food Picker',
     license: 'MIT',
     releasedAt: capturedAt.toISOString(),
@@ -98,7 +98,7 @@ const state = {
       'docs/STATE.md', 'docs/BUILD-LOG.md',
     ],
     content: {
-      safeFoods: 18,
+      safeFoods: 64,
       warningFoods: 6,
       swaps: 6,
       evidenceSources: 6,

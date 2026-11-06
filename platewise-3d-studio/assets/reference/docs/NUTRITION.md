@@ -1,9 +1,9 @@
 # Nutrition methodology
 
 This document is the authoritative explanation of every number PlateWise 3D
-shows. It is written so that another developer or agent can reproduce the data,
-the score and the curve, and so that a clinician can see exactly where the limits
-are.
+shows. It covers all 64 pantry foods and is written so that another developer or
+agent can reproduce the data, the score and the curve, and so that a clinician
+can see exactly where the limits are.
 
 > **Educational use only.** PlateWise is not a medical device, does not measure
 > glucose and does not personalize advice. Glycemic response varies with
@@ -43,7 +43,9 @@ glycemicLoad = gi × netCarbs / 100
 The per-100 g record never changes. Serving sizes are the only scaling factor.
 Changing a serving size changes everything downstream, including the score.
 
-## 2. The 18 safe foods, per serving
+## 2. The 64 safe foods, per serving
+
+The pantry has **33 plant-half foods** (30 non-starchy vegetables + 3 berries), **14 proteins** and **17 fats, nuts, seeds and oils**. Berries are placed in the veg zone because they occupy the plant half of the plate; the filter chip still separates them.
 
 | Food | Zone | Serving | Net carbs | Fiber | Protein | Fat | kcal | GI | GL |
 | --- | --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
@@ -53,22 +55,66 @@ Changing a serving size changes everything downstream, including the score.
 | Zucchini | veg | 1 cup, sliced (124 g) | 2.62 | 1.24 | 1.50 | 0.40 | 21 | 15 | 0.39 |
 | Bell pepper | veg | 1 cup, sliced (119 g) | 5.41 | 2.50 | 1.18 | 0.36 | 37 | 15 | 0.81 |
 | Asparagus | veg | 1 cup (134 g) | 2.39 | 2.81 | 2.95 | 0.16 | 27 | 15 | 0.36 |
+| Kale | veg | 1 cup, chopped (67 g) | 3.45 | 2.41 | 2.87 | 0.62 | 33 | 15 | 0.52 |
+| Arugula | veg | 1 cup (20 g) | 0.41 | 0.32 | 0.52 | 0.13 | 5 | 15 | 0.06 |
+| Romaine lettuce | veg | 1 cup, shredded (47 g) | 0.56 | 0.99 | 0.58 | 0.14 | 8 | 15 | 0.08 |
+| Swiss chard | veg | 1 cup, chopped (36 g) | 0.77 | 0.58 | 0.65 | 0.07 | 7 | 15 | 0.12 |
+| Collard greens | veg | 1 cup, chopped (36 g) | 0.51 | 1.44 | 1.09 | 0.22 | 12 | 15 | 0.08 |
+| Bok choy | veg | 1 cup, shredded (70 g) | 0.83 | 0.70 | 1.05 | 0.14 | 9 | 15 | 0.12 |
+| Watercress | veg | 1 cup (34 g) | 0.27 | 0.17 | 0.78 | 0.03 | 4 | 15 | 0.04 |
+| Brussels sprouts | veg | 1 cup (88 g) | 4.54 | 3.34 | 2.97 | 0.26 | 38 | 15 | 0.68 |
+| Red cabbage | veg | 1 cup, chopped (89 g) | 4.69 | 1.87 | 1.27 | 0.14 | 28 | 15 | 0.70 |
+| Cucumber | veg | 1 cup, sliced (104 g) | 3.26 | 0.52 | 0.68 | 0.11 | 16 | 15 | 0.49 |
+| Celery | veg | 1 cup, chopped (101 g) | 1.38 | 1.62 | 0.70 | 0.17 | 16 | 15 | 0.21 |
+| Green beans | veg | 1 cup (100 g) | 4.27 | 2.70 | 1.83 | 0.22 | 31 | 15 | 0.64 |
+| Snap peas | veg | 1 cup (63 g) | 3.12 | 1.64 | 1.76 | 0.13 | 26 | 15 | 0.47 |
+| Okra | veg | 1 cup (100 g) | 4.25 | 3.20 | 1.93 | 0.19 | 33 | 20 | 0.85 |
+| Eggplant | veg | 1 cup, cubes (82 g) | 2.36 | 2.46 | 0.80 | 0.15 | 21 | 15 | 0.35 |
+| Tomato | veg | 1 cup, chopped (123 g) | 3.30 | 1.48 | 1.08 | 0.25 | 22 | 15 | 0.49 |
+| Cremini mushrooms | veg | 1 cup, sliced (72 g) | 2.67 | 0.43 | 1.80 | 0.07 | 16 | 15 | 0.40 |
+| Artichoke hearts | veg | 1 cup, hearts (84 g) | 5.25 | 4.79 | 2.43 | 0.29 | 45 | 15 | 0.79 |
+| Fennel | veg | 1 cup, sliced (87 g) | 3.65 | 2.70 | 1.08 | 0.17 | 27 | 15 | 0.55 |
+| Radishes | veg | 1 cup, sliced (116 g) | 2.08 | 1.86 | 0.79 | 0.12 | 19 | 15 | 0.31 |
+| Red onion | veg | 1/4 cup, sliced (40 g) | 3.06 | 0.68 | 0.44 | 0.04 | 16 | 10 | 0.31 |
+| Leek | veg | 1/4 cup, sliced (26 g) | 3.21 | 0.47 | 0.39 | 0.08 | 16 | 15 | 0.48 |
+| Garlic | veg | 1 clove (3 g) | 0.93 | 0.06 | 0.19 | 0.01 | 4 | 30 | 0.28 |
+| Hearts of palm | veg | 1 cup, sliced (73 g) | 1.62 | 1.75 | 1.97 | 0.45 | 20 | 15 | 0.24 |
 | Wild salmon | protein | 3.5 oz fillet (100 g) | 0.00 | 0.00 | 19.84 | 6.34 | 142 | 0 | 0.00 |
 | Egg | protein | 1 large egg (50 g) | 0.36 | 0.00 | 6.28 | 4.75 | 72 | 0 | 0.00 |
 | Chicken breast | protein | 3.5 oz, raw (100 g) | 0.00 | 0.00 | 22.50 | 2.62 | 120 | 0 | 0.00 |
 | Firm tofu | protein | 3 oz (85 g) | 0.93 | 1.02 | 14.71 | 7.39 | 122 | 0 | 0.00 |
+| Shrimp | protein | 3 oz, cooked (85 g) | 0.17 | 0.00 | 20.40 | 0.24 | 84 | 0 | 0.00 |
+| Tuna | protein | 3 oz, canned in water (85 g) | 0.00 | 0.00 | 21.68 | 0.68 | 99 | 0 | 0.00 |
+| Cod | protein | 3.5 oz fillet (100 g) | 0.00 | 0.00 | 17.80 | 0.70 | 82 | 0 | 0.00 |
+| Sardines | protein | 1 tin (3 oz) (85 g) | 0.00 | 0.00 | 20.91 | 9.78 | 177 | 0 | 0.00 |
+| Rainbow trout | protein | 3.5 oz fillet (100 g) | 0.00 | 0.00 | 20.80 | 6.60 | 148 | 0 | 0.00 |
+| Turkey breast | protein | 3.5 oz, raw (100 g) | 0.00 | 0.00 | 23.70 | 2.50 | 114 | 0 | 0.00 |
+| Beef sirloin | protein | 3.5 oz, raw (100 g) | 0.00 | 0.00 | 25.20 | 10.50 | 201 | 0 | 0.00 |
+| Pork tenderloin | protein | 3.5 oz, raw (100 g) | 0.00 | 0.00 | 26.00 | 3.50 | 143 | 0 | 0.00 |
+| Tempeh | protein | 3 oz (84 g) | 3.90 | 2.52 | 17.05 | 9.07 | 161 | 15 | 0.58 |
+| Greek yogurt | protein | 3/4 cup, plain nonfat (170 g) | 6.12 | 0.00 | 17.34 | 0.68 | 100 | 35 | 2.14 |
 | Avocado | fat | ½ small avocado (75 g) | 1.37 | 5.03 | 1.50 | 11.00 | 120 | 10 | 0.14 |
-| Almonds | fat | 1 oz, 23 nuts (28 g) | 2.53 | 3.50 | 5.92 | 13.98 | 162 | 15 | 0.38 |
-| Walnuts | fat | 1 oz, 14 halves (28 g) | 1.96 | 1.88 | 4.26 | 18.26 | 183 | 15 | 0.29 |
+| Almonds | fat | 1 oz (23 nuts) (28 g) | 2.53 | 3.50 | 5.92 | 13.98 | 162 | 15 | 0.38 |
+| Walnuts | fat | 1 oz (14 halves) (28 g) | 1.96 | 1.88 | 4.26 | 18.26 | 183 | 15 | 0.29 |
 | Olive oil | fat | 1 tbsp (14 g) | 0.00 | 0.00 | 0.00 | 14.00 | 124 | 0 | 0.00 |
 | Chia seeds | fat | 2 tbsp (24 g) | 1.85 | 8.26 | 3.97 | 7.38 | 117 | 15 | 0.28 |
+| Pecans | fat | 1 oz (19 halves) (28 g) | 1.19 | 2.69 | 2.57 | 20.15 | 193 | 15 | 0.18 |
+| Pistachios | fat | 1 oz (49 nuts) (28 g) | 4.64 | 2.97 | 5.64 | 12.69 | 157 | 15 | 0.70 |
+| Macadamia nuts | fat | 1 oz (10 nuts) (28 g) | 1.46 | 2.41 | 2.21 | 21.22 | 201 | 15 | 0.22 |
+| Pine nuts | fat | 1 oz (28 g) | 2.62 | 1.04 | 3.83 | 19.14 | 188 | 15 | 0.39 |
+| Cashews | fat | 0.7 oz (20 g) | 5.38 | 0.66 | 3.64 | 8.77 | 111 | 22 | 1.18 |
+| Flaxseed | fat | 2 tbsp, ground (15 g) | 0.24 | 4.09 | 2.74 | 6.32 | 80 | 15 | 0.04 |
+| Hemp hearts | fat | 3 tbsp (20 g) | 0.93 | 0.80 | 6.31 | 9.75 | 111 | 15 | 0.14 |
+| Pumpkin seeds | fat | 1 oz (28 g) | 1.32 | 1.68 | 8.46 | 13.73 | 157 | 15 | 0.20 |
+| Sunflower seeds | fat | 1 oz (28 g) | 3.19 | 2.41 | 5.82 | 14.41 | 164 | 15 | 0.48 |
+| Sesame seeds | fat | 2 tbsp (15 g) | 1.75 | 1.77 | 2.66 | 7.45 | 86 | 15 | 0.26 |
+| Black olives | fat | about 10 olives (30 g) | 0.92 | 0.96 | 0.25 | 3.20 | 35 | 15 | 0.14 |
+| Avocado oil | fat | 1 tbsp (14 g) | 0.00 | 0.00 | 0.00 | 14.00 | 124 | 0 | 0.00 |
 | Strawberries | veg | 1 cup, sliced (100 g) | 5.68 | 2.00 | 0.67 | 0.30 | 32 | 40 | 2.27 |
 | Raspberries | veg | 1 cup (100 g) | 5.44 | 6.50 | 1.20 | 0.65 | 52 | 32 | 1.74 |
 | Blueberries | veg | ½ cup (75 g) | 9.07 | 1.80 | 0.55 | 0.25 | 43 | 53 | 4.81 |
 
-Berries are placed in the **veg** zone because they occupy the plant half of the
-plate. The filter chip still separates them. Blueberries have the highest GI and
-net carbs of the three; the half-cup serving is deliberate.
+Serving sizes are deliberately explicit. A smaller berry serving, a different nut portion or a larger fillet changes the per-serving numbers, the score and the curve. The app never scales a food silently.
 
 Per-100 g source descriptions, as recorded in the app:
 
@@ -80,20 +126,66 @@ Per-100 g source descriptions, as recorded in the app:
 | Zucchini | Squash, summer, zucchini, includes skin, raw |
 | Bell pepper | Peppers, sweet, red, raw (SR Legacy) |
 | Asparagus | Asparagus, raw (SR Legacy) |
+| Kale | Kale, raw |
+| Arugula | Arugula, raw |
+| Romaine lettuce | Lettuce, cos or romaine, raw |
+| Swiss chard | Chard, Swiss, raw |
+| Collard greens | Collards, raw |
+| Bok choy | Cabbage, chinese (pak-choi), raw |
+| Watercress | Watercress, raw |
+| Brussels sprouts | Brussels sprouts, raw |
+| Red cabbage | Cabbage, red, raw |
+| Cucumber | Cucumber, with peel, raw |
+| Celery | Celery, raw |
+| Green beans | Beans, snap, green, raw |
+| Snap peas | Peas, edible-podded, raw |
+| Okra | Okra, raw |
+| Eggplant | Eggplant, raw |
+| Tomato | Tomatoes, red, ripe, raw |
+| Cremini mushrooms | Mushrooms, cremini, raw |
+| Artichoke hearts | Artichokes, (globe or french), cooked, boiled, drained |
+| Fennel | Fennel, bulb, raw |
+| Radishes | Radishes, raw |
+| Red onion | Onions, red, raw |
+| Leek | Leeks, raw |
+| Garlic | Garlic, raw |
+| Hearts of palm | Hearts of palm, canned |
 | Wild salmon | Fish, salmon, coho, wild, raw (SR Legacy) |
 | Egg | Egg, whole, raw, fresh (SR Legacy) |
 | Chicken breast | Chicken, broilers or fryers, breast, meat only, raw |
 | Firm tofu | Tofu, raw, firm, prepared with calcium sulfate |
+| Shrimp | Crustaceans, shrimp, cooked |
+| Tuna | Fish, tuna, light, canned in water, drained |
+| Cod | Fish, cod, Atlantic, raw |
+| Sardines | Fish, sardine, Atlantic, canned in oil, drained |
+| Rainbow trout | Fish, trout, rainbow, wild, raw |
+| Turkey breast | Turkey, breast, from whole bird, meat only, raw |
+| Beef sirloin | Beef, top sirloin, steak, separable lean only, raw |
+| Pork tenderloin | Pork, fresh, loin, tenderloin, separable lean only, raw |
+| Tempeh | Tempeh |
+| Greek yogurt | Yogurt, Greek, plain, nonfat |
 | Avocado | Avocados, raw, all commercial varieties |
 | Almonds | Nuts, almonds (SR Legacy) |
 | Walnuts | Nuts, walnuts, English (SR Legacy) |
 | Olive oil | Oil, olive, salad or cooking |
 | Chia seeds | Seeds, chia seeds, dried |
+| Pecans | Nuts, pecans |
+| Pistachios | Nuts, pistachio nuts, dry roasted, without salt |
+| Macadamia nuts | Nuts, macadamia nuts, raw |
+| Pine nuts | Nuts, pine nuts, dried |
+| Cashews | Nuts, cashew nuts, raw |
+| Flaxseed | Seeds, flaxseed |
+| Hemp hearts | Seeds, hemp seed, hulled |
+| Pumpkin seeds | Seeds, pumpkin and squash seed kernels, roasted |
+| Sunflower seeds | Seeds, sunflower seed kernels, dried |
+| Sesame seeds | Seeds, sesame seeds, whole, dried |
+| Black olives | Olives, ripe, canned (small-extra large) |
+| Avocado oil | Oil, avocado |
 | Strawberries | Strawberries, raw (SR Legacy) |
 | Raspberries | Raspberries, raw (SR Legacy) |
 | Blueberries | Blueberries, raw (SR Legacy) |
 
-Values were rounded for teaching. Use FDC's exact records for clinical work.
+Values were rounded for teaching. The GI values are representative published values, not a unique extraction for every cultivar or preparation. Use FDC and the primary GI literature for clinical or research work.
 
 ## 3. The excluded foods
 

@@ -296,6 +296,7 @@ kbd {
 .chip.is-active { background: var(--ink); border-color: var(--ink); color: var(--surface); }
 .chip[data-filter="leafy"].is-active { background: var(--green); border-color: var(--green); color: #fff; }
 .chip[data-filter="protein"].is-active { background: var(--protein); border-color: var(--protein); color: #fff; }
+.chip[data-filter="nuts"].is-active { background: #8a6a3a; border-color: #8a6a3a; color: #fff; }
 .chip[data-filter="fat"].is-active { background: var(--fat); border-color: var(--fat); color: #3a2a06; }
 .chip[data-filter="berry"].is-active { background: var(--berry); border-color: var(--berry); color: #fff; }
 

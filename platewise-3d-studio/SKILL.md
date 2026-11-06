@@ -1,7 +1,7 @@
 ---
 name: PlateWise 3D Studio
-description: Build a release-grade static Three.js non-starchy whole-food plate picker: 18 procedural foods, a 50/25/25 plate, live net carbs/fiber/glycemic load and safety score, six starch warnings and swaps, a simulated glucose curve, a local meal log, documentation, three verification layers and GitHub Pages.
-version: 1.0.0
+description: Build a release-grade static Three.js non-starchy whole-food plate picker: 64 whole foods, a 50/25/25 plate, live net carbs/fiber/glycemic load and safety score, six starch warnings and swaps, a simulated glucose curve, a local meal log, documentation, three verification layers and GitHub Pages.
+version: 1.1.0
 ---
 
 # PlateWise 3D Studio
@@ -67,7 +67,7 @@ working `state.json`; do not present its numbers as your session's.
 ### 3. Adapt, don't rewrite
 
 - Keep the three-file split and the pinned import map.
-- Keep the 18-food pantry shape, 6 warnings, 6 swaps and the sample plate.
+- Keep the 64-food pantry shape (30 vegetables, 3 berries, 14 proteins, 17 fats/nuts/seeds/oils), 6 warnings, 6 swaps and the sample plate.
 - If changing a food, use USDA per-100 g data, an explicit `servingG`, a typical
   GI, a USDA source string and a 3D factory. Update `docs/NUTRITION.md`.
 - If changing the score or curve, update the formula in the UI, the docs, and the

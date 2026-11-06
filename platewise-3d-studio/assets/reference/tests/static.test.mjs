@@ -139,8 +139,8 @@ test('the self-test API and boot contract are present', () => {
   assert.match(js, /new GlucoseChart/);
 });
 
-test('the data contains 18 foods, 6 warnings and 6 swaps', () => {
-  assert.equal((js.match(/per100:/g) || []).length, 18);
+test('the data contains 64 foods, 6 warnings and 6 swaps', () => {
+  assert.equal((js.match(/per100:/g) || []).length, 64);
   assert.equal((js.match(/swapId:/g) || []).length, 6);
   assert.equal((js.match(/warningId: '/g) || []).length, 6);
   assert.equal((js.match(/addIds:/g) || []).length, 6);

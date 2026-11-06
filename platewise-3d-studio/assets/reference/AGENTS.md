@@ -4,7 +4,7 @@
 
 PlateWise 3D is a static, single-page non-starchy whole-food plate builder. A
 procedural Three.js plate is divided 50/25/25 into veg, protein and fat zones.
-Eighteen whole foods can be placed, removed and inspected; a live analyzer shows
+Sixty-four whole foods can be placed, removed and inspected; a live analyzer shows
 net carbs, fiber, glycemic load, protein, calories and a 0–100 teaching score. A
 180-minute simulated glucose curve compares the plate with a reference starchy
 meal. Six craving swaps and six starch warnings redirect common high-glycemic

@@ -34,7 +34,7 @@ if (!failures.length) {
   if (!state.usage || state.usage.totalTokens <= 0) failures.push('state.json usage missing');
   if (state.credits?.tool !== 'OpenCode') failures.push('state.json credits missing OpenCode');
   const script = readFileSync(join(REF, 'script.js'), 'utf8');
-  if ((script.match(/per100:/g) || []).length !== 18) failures.push('expected 18 foods');
+  if ((script.match(/per100:/g) || []).length !== 64) failures.push('expected 64 foods');
   if ((script.match(/swapId: '/g) || []).length !== 6) failures.push('expected 6 warnings');
   if ((script.match(/addIds:/g) || []).length !== 6) failures.push('expected 6 swaps');
   if (!script.includes('three@0.169.0') && !readFileSync(join(REF, 'index.html'), 'utf8').includes('three@0.169.0')) {

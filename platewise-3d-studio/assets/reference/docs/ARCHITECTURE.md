@@ -148,10 +148,11 @@ are escaped with `escapeHtml` before insertion.
 ### Plate
 
 - Base cylinder radius 3.4, rim torus radius 3.3.
-- Three `RingGeometry` sectors, unlit transparent materials at opacity 0.32:
-  - veg: `0 … π` (front half), `#7ac142`
-  - protein: `π … 3π/2` (back left), `#d77b62`
-  - fat: `3π/2 … 2π` (back right), `#e2b45a`
+- Three `RingGeometry` sectors, unlit transparent materials at opacity 0.32.
+  **World-space** zones (slots and labels): veg `0 … π` (front half), protein
+  `π … 3π/2` (back left), fat `3π/2 … 2π` (back right). Because the ring is
+  rotated onto XZ, its theta starts are mirrored: veg `π … 2π`, protein
+  `π/2 … π`, fat `0 … π/2`. Do not “simplify” this without checking a render.
 - Thin white divider lines and three canvas-texture sprites with rounded pill
   backgrounds. Sprites use `depthTest: false` and `renderOrder: 3`; the HTML
   legend remains the authoritative description.
@@ -166,9 +167,14 @@ same zone and picks the same index; overflow shifts radius inward and angle by
 over 520 ms with a cubic ease, bob subtly, and scale out over 260 ms. Removed
 groups dispose their geometries and materials after the animation.
 
-Every factory returns a group whose base is at local y=0. `group.userData`
-stores `servingUid`, `baseScale`, `phase`, `born`, `removing`, `foodId` and
-`target`.
+Every factory returns a group whose base is at local y=0. The original 18 foods
+have dedicated factories in `FOOD_FACTORIES`. The expanded pantry uses 22
+reusable **form families** in `FORM_FACTORIES` (`leafy`, `floret`, `cabbage`,
+`long`, `bean`, `okra`, `round`, `mushroom`, `artichoke`, `bulb`, `shrimp`,
+`fillet`, `smallfish`, `poultry`, `steak`, `meat`, `tempeh`, `yogurt`, `nut`,
+`seed`, `olives`, `oilbottle`). A food record's `form`, `color` and `accent`
+drive the generic factory. `group.userData` stores `servingUid`, `baseScale`,
+`phase`, `born`, `removing`, `foodId` and `target`.
 
 ### Pointer interaction
 
@@ -210,7 +216,7 @@ and key-light intensity. The plate and foods keep their material identity.
 | Search input | `input` | `state.query`, `renderPalette` |
 | Chip | click | `state.filter`, `renderPalette` |
 | Plate row | delegated | select or remove |
-| Clear / example / surprise | buttons | clear, `buildExample` |
+| Clear / example / surprise | buttons | `clearPlate`, `buildExample`, random `buildSurprise` |
 | Save | dialog form | `saveMeal(name)` |
 | Load / delete log | delegated | `loadMeal` / `deleteMeal` |
 | Swap add | delegated | `buildSwap(id)` |
@@ -238,7 +244,7 @@ contenteditable element is focused.
 - duplicate DOM IDs;
 - WebGL context and at least one rendered frame;
 - chart canvas size;
-- every food has a 3D factory.
+- every food builds a non-empty 3D mesh;
 
 It writes `window.__platewise.selftest = { passed, total, results }`, sets
 `selftestPassed`, renders the panel and is run automatically at 900 ms (or after
@@ -251,10 +257,11 @@ inspection helpers; it is not a public API for third-party integrations.
 
 **Add a food**
 1. Add an entry to `FOODS` with USDA per-100 g data and a serving weight.
-2. Add a factory to `FOOD_FACTORIES` returning a group with base at y=0.
+2. Either add a factory to `FOOD_FACTORIES` or set `form`, `color` and `accent`
+   to reuse a `FORM_FACTORIES` family, returning a group with base at y=0.
 3. Keep the ID unique; add tags that a user would search.
-4. Run the self-test and browser suite. The self-test fails if the factory is
-   missing.
+4. Run the self-test and browser suite. The self-test builds every mesh and
+   fails if a factory is missing or returns an empty group.
 
 **Change a serving**
 Update `serving` and `servingG`. The per-serving macros, GL, score and curve

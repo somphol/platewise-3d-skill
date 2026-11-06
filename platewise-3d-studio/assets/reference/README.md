@@ -22,7 +22,7 @@ It is an educational visualizer, **not a medical device or a CGM**.
 ## What you can do
 
 - **Build a 3D plate.** Orbit, zoom and pan a procedural ceramic plate divided into 50% non-starchy veg, 25% protein and 25% healthy fats.
-- **Place 18 whole foods.** Broccoli, spinach, cauliflower, zucchini, peppers, asparagus, wild salmon, eggs, chicken, tofu, avocado, almonds, walnuts, olive oil, chia, strawberries, raspberries and blueberries. Each is a hand-built Three.js mesh.
+- **Place 64 whole foods.** Thirty non-starchy vegetables (leafy greens, cruciferous, cucumber, celery, green beans, okra, eggplant, tomato, mushrooms, artichoke and more), three low-GI berries, 14 proteins (fish, shellfish, poultry, lean meat, tofu, tempeh, Greek yogurt) and 17 fats, nuts, seeds and oils. Every food has a procedural Three.js mesh built from 18 hand-authored factories plus 22 reusable form families.
 - **See the load immediately.** Net carbs, fiber, protein, calories, glycemic load and a 0–100 Glycemic Safety Score update on every placement. The score rewards fiber, protein and vegetable share, and subtracts glycemic load and net-carb density.
 - **Get warned, not shamed.** Tap white rice, potato, fries, white bread, pasta or sugary cereal and a modal explains the spike risk with its GI, GL and net carbs — then offers a whole-food swap.
 - **Swap the craving.** Rice → cauliflower rice. Pasta → zucchini noodles. Mashed potato → mashed cauliflower. Bread → almond–chia cloud bread. Sugary snacks → walnuts and berries. Fries → roasted asparagus.

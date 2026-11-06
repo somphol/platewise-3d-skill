@@ -6,7 +6,7 @@ separate design and privacy review.
 
 ## Now (shipped in 1.0)
 
-- 3D 50/25/25 plate with 18 whole foods.
+- 3D 50/25/25 plate with 64 whole foods.
 - Live net carbs, fiber, protein, calories, glycemic load and safety score.
 - Six starch warnings and six swaps.
 - Simulated glucose curve with a starchy reference.

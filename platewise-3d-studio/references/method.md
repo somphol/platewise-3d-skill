@@ -46,8 +46,11 @@
 
 ## 3. Data values
 
-Use the per-serving table in `docs/NUTRITION.md` of the reference. The short
-version:
+The reference pantry has **64 foods**: 30 non-starchy vegetables, 3 berries,
+14 proteins and 17 fats/nuts/seeds/oils. The canonical per-serving table is
+`assets/reference/docs/NUTRITION.md`. The original 18 are shown below for
+orientation; every new food follows the same shape and needs a USDA source,
+serving weight, GI, `form` and colour.
 
 | Food | Serving | Net | Fiber | GI |
 | --- | --- | ---: | ---: | ---: |

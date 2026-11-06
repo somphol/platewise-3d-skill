@@ -32,7 +32,7 @@ Run from the repository root.
 - `platewise-3d-studio/SKILL.md` — model-facing instructions.
 - `platewise-3d-studio/references/` — method, nutrition, scene, verification,
   lessons, hosting, build log.
-- `platewise-3d-studio/assets/reference/` — the complete v1.0.0 app, docs, tests,
+- `platewise-3d-studio/assets/reference/` — the complete v1.1.0 app, docs, tests,
   screenshots and state. `templates/github/` holds the CI and issue templates
   because GitHub Pages cannot serve `.github/`; the scaffold restores them.
 - `platewise-3d-studio/scripts/new-project.mjs` — copies the reference; refuses a

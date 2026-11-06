@@ -1,10 +1,11 @@
 # PlateWise 3D Studio — OpenCode skill
 
 A reusable skill for building **PlateWise 3D**, a release-grade static Three.js
-non-starchy whole-food plate picker: 18 procedural foods on a 50/25/25 plate,
+non-starchy whole-food plate picker: 64 whole foods on a 50/25/25 plate,
 live net carbs, fiber, glycemic load and a safety score, six starch warnings and
 swaps, a simulated glucose curve, a local meal log, three verification layers and
-a GitHub Pages release.
+a GitHub Pages release. The pantry covers 30 non-starchy vegetables, 3 berries,
+14 proteins and 17 fats, nuts, seeds and oils.
 
 ![PlateWise 3D preview](docs/preview.png)
 

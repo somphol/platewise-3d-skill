@@ -104,7 +104,7 @@ try {
   check('Page reaches ready state', boot.ready === 'true');
   check('Title names the product', /PlateWise 3D/.test(boot.title), boot.title);
   check('WebGL scene boots', boot.scene === 'ready' && boot.sceneInfo.webgl === true);
-  check('18 safe foods, 6 warnings, 6 swaps', boot.foods === 18 && boot.warnings === 6 && boot.swaps === 6, `${boot.foods}/${boot.warnings}/${boot.swaps}`);
+  check('64 safe foods, 6 warnings, 6 swaps', boot.foods === 64 && boot.warnings === 6 && boot.swaps === 6, `${boot.foods}/${boot.warnings}/${boot.swaps}`);
   check('Six evidence sources are bundled', boot.sources >= 6, String(boot.sources));
   check('Empty plate scores zero', boot.summary.score === 0 && boot.summary.servings === 0);
   check('3D canvas has usable dimensions', boot.canvas.width > 400 && boot.canvas.height > 300, `${boot.canvas.width}×${boot.canvas.height}`);
@@ -177,7 +177,7 @@ try {
 
   await evaluate(`document.querySelector('.chip[data-filter="protein"]').click(); true`);
   await sleep(250);
-  check('Category chip filters to proteins', await evaluate(`document.querySelectorAll('#food-grid [data-food]').length === 4`));
+  check('Category chip filters to proteins', await evaluate(`document.querySelectorAll('#food-grid [data-food]').length === 14`));
   await evaluate(`document.querySelector('.chip[data-filter="all"]').click(); true`);
   await sleep(200);
 
@@ -259,7 +259,7 @@ try {
   check('Mobile layout has no horizontal overflow', mobile.overflow <= 1, `${mobile.overflow}px`);
   check('Mobile stage stays usable', mobile.stageWidth >= 360 && mobile.stageHeight >= 340, `${mobile.stageWidth}×${mobile.stageHeight}`);
   check('Mobile dock appears with a plate', mobile.dock === 'flex');
-  check('Mobile pantry keeps all cards', mobile.cards === 18, String(mobile.cards));
+  check('Mobile pantry keeps all cards', mobile.cards === 64, String(mobile.cards));
   await cdp.send('Emulation.clearDeviceMetricsOverride');
 
   // Accessibility spot checks.

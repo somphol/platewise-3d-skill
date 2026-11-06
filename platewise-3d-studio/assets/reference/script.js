@@ -13,7 +13,7 @@ import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 
 const APP = {
   name: 'PlateWise 3D',
-  version: '1.0.0',
+  version: '1.1.0',
   storeMeals: 'platewise.meals.v1',
   storePrefs: 'platewise.prefs.v1',
   maxServings: 12,
@@ -81,6 +81,222 @@ const FOODS = [
     source: 'USDA FoodData Central: Asparagus, raw (SR Legacy)',
   },
   {
+    id: 'kale', name: 'Kale', emoji: '🥬', category: 'leafy', zone: 'veg',
+    serving: '1 cup, chopped', servingG: 67, gi: 15, scale: 0.78, ring: 0.5,
+    per100: { kcal: 49, carbs: 8.75, fiber: 3.6, protein: 4.28, fat: 0.93 },
+    blurb: 'Dark, sturdy leaves with fiber and vitamin K; massages down to a fraction of the volume.',
+    tags: ['green', 'salad', 'chips', 'leafy', 'bitter'],
+    source: 'USDA FoodData Central: Kale, raw',
+    form: 'leafy', color: '#2f6b3a', accent: '#6fa24a',
+  },
+  {
+    id: 'arugula', name: 'Arugula', emoji: '🥬', category: 'leafy', zone: 'veg',
+    serving: '1 cup', servingG: 20, gi: 15, scale: 0.55, ring: 0.42,
+    per100: { kcal: 25, carbs: 3.65, fiber: 1.6, protein: 2.58, fat: 0.66 },
+    blurb: 'Peppery leaves that add flavour without adding a meaningful carbohydrate load.',
+    tags: ['peppery', 'salad', 'leafy', 'raw'],
+    source: 'USDA FoodData Central: Arugula, raw',
+    form: 'leafy', color: '#3f7a35', accent: '#8fbf62',
+  },
+  {
+    id: 'romaine', name: 'Romaine lettuce', emoji: '🥬', category: 'leafy', zone: 'veg',
+    serving: '1 cup, shredded', servingG: 47, gi: 15, scale: 0.72, ring: 0.48,
+    per100: { kcal: 17, carbs: 3.29, fiber: 2.1, protein: 1.23, fat: 0.3 },
+    blurb: 'Crisp, mild leaves for wraps and big salads; mostly water and fiber.',
+    tags: ['lettuce', 'salad', 'wrap', 'crunchy', 'leafy'],
+    source: 'USDA FoodData Central: Lettuce, cos or romaine, raw',
+    form: 'leafy', color: '#4f8f47', accent: '#a7cf70',
+  },
+  {
+    id: 'swiss-chard', name: 'Swiss chard', emoji: '🥬', category: 'leafy', zone: 'veg',
+    serving: '1 cup, chopped', servingG: 36, gi: 15, scale: 0.7, ring: 0.46,
+    per100: { kcal: 19, carbs: 3.74, fiber: 1.6, protein: 1.8, fat: 0.2 },
+    blurb: 'Ruby stems and broad leaves; saute with olive oil and a little lemon.',
+    tags: ['leafy', 'saute', 'greens', 'magnesium'],
+    source: 'USDA FoodData Central: Chard, Swiss, raw',
+    form: 'leafy', color: '#2f6b3a', accent: '#c94f3d',
+  },
+  {
+    id: 'collard-greens', name: 'Collard greens', emoji: '🥬', category: 'leafy', zone: 'veg',
+    serving: '1 cup, chopped', servingG: 36, gi: 15, scale: 0.72, ring: 0.48,
+    per100: { kcal: 32, carbs: 5.42, fiber: 4, protein: 3.02, fat: 0.61 },
+    blurb: 'A southern staple with one of the highest fiber-to-carb ratios in the pantry.',
+    tags: ['leafy', 'braised', 'greens', 'fiber'],
+    source: 'USDA FoodData Central: Collards, raw',
+    form: 'leafy', color: '#3d6b34', accent: '#86a85a',
+  },
+  {
+    id: 'bok-choy', name: 'Bok choy', emoji: '🥬', category: 'leafy', zone: 'veg',
+    serving: '1 cup, shredded', servingG: 70, gi: 15, scale: 0.72, ring: 0.48,
+    per100: { kcal: 13, carbs: 2.18, fiber: 1, protein: 1.5, fat: 0.2 },
+    blurb: 'Crunchy white stems and green leaves; excellent in a hot pan with garlic.',
+    tags: ['asian', 'stir-fry', 'leafy', 'crunchy'],
+    source: 'USDA FoodData Central: Cabbage, chinese (pak-choi), raw',
+    form: 'leafy', color: '#4f8a3f', accent: '#e8e1c9',
+  },
+  {
+    id: 'watercress', name: 'Watercress', emoji: '🌿', category: 'leafy', zone: 'veg',
+    serving: '1 cup', servingG: 34, gi: 15, scale: 0.55, ring: 0.4,
+    per100: { kcal: 11, carbs: 1.29, fiber: 0.5, protein: 2.3, fat: 0.1 },
+    blurb: 'Peppery aquatic greens with vitamin K and almost no available carbohydrate.',
+    tags: ['peppery', 'salad', 'leafy', 'raw'],
+    source: 'USDA FoodData Central: Watercress, raw',
+    form: 'leafy', color: '#2f7a3a', accent: '#8fc45a',
+  },
+  {
+    id: 'brussels-sprouts', name: 'Brussels sprouts', emoji: '🥬', category: 'cruciferous', zone: 'veg',
+    serving: '1 cup', servingG: 88, gi: 15, scale: 0.76, ring: 0.5,
+    per100: { kcal: 43, carbs: 8.95, fiber: 3.8, protein: 3.38, fat: 0.3 },
+    blurb: 'Roast cut-side down until deeply caramelised; the fiber holds the load down.',
+    tags: ['cruciferous', 'roasted', 'green', 'fiber'],
+    source: 'USDA FoodData Central: Brussels sprouts, raw',
+    form: 'floret', color: '#5a8f3a', accent: '#8ebc56',
+  },
+  {
+    id: 'red-cabbage', name: 'Red cabbage', emoji: '🥬', category: 'cruciferous', zone: 'veg',
+    serving: '1 cup, chopped', servingG: 89, gi: 15, scale: 0.8, ring: 0.5,
+    per100: { kcal: 31, carbs: 7.37, fiber: 2.1, protein: 1.43, fat: 0.16 },
+    blurb: 'Purple anthocyanins and crunch; a vinegar slaw is a low-load plate filler.',
+    tags: ['cruciferous', 'slaw', 'purple', 'crunchy'],
+    source: 'USDA FoodData Central: Cabbage, red, raw',
+    form: 'cabbage', color: '#7a3f6a', accent: '#c98ab5',
+  },
+  {
+    id: 'cucumber', name: 'Cucumber', emoji: '🥒', category: 'veg', zone: 'veg',
+    serving: '1 cup, sliced', servingG: 104, gi: 15, scale: 0.8, ring: 0.5,
+    per100: { kcal: 15, carbs: 3.63, fiber: 0.5, protein: 0.65, fat: 0.11 },
+    blurb: 'Cool, watery slices that add volume to a plate without a glucose cost.',
+    tags: ['salad', 'crunchy', 'hydrating', 'green'],
+    source: 'USDA FoodData Central: Cucumber, with peel, raw',
+    form: 'long', color: '#4f8a3a', accent: '#9fc46a',
+  },
+  {
+    id: 'celery', name: 'Celery', emoji: '🌿', category: 'veg', zone: 'veg',
+    serving: '1 cup, chopped', servingG: 101, gi: 15, scale: 0.76, ring: 0.48,
+    per100: { kcal: 16, carbs: 2.97, fiber: 1.6, protein: 0.69, fat: 0.17 },
+    blurb: 'The original crunchy vehicle for nut butter or a low-carb dip.',
+    tags: ['crunchy', 'snack', 'stalk', 'green'],
+    source: 'USDA FoodData Central: Celery, raw',
+    form: 'long', color: '#8fae5a', accent: '#c8d98a',
+  },
+  {
+    id: 'green-beans', name: 'Green beans', emoji: '🫛', category: 'veg', zone: 'veg',
+    serving: '1 cup', servingG: 100, gi: 15, scale: 0.78, ring: 0.5,
+    per100: { kcal: 31, carbs: 6.97, fiber: 2.7, protein: 1.83, fat: 0.22 },
+    blurb: 'A pod vegetable that eats like a green; blanch and dress with olive oil.',
+    tags: ['beans', 'green', 'steamed', 'fiber'],
+    source: 'USDA FoodData Central: Beans, snap, green, raw',
+    form: 'bean', color: '#3f7a34', accent: '#7fb84a',
+  },
+  {
+    id: 'snap-peas', name: 'Snap peas', emoji: '🫛', category: 'veg', zone: 'veg',
+    serving: '1 cup', servingG: 63, gi: 15, scale: 0.7, ring: 0.46,
+    per100: { kcal: 42, carbs: 7.55, fiber: 2.6, protein: 2.8, fat: 0.2 },
+    blurb: 'Sweet, crisp pods; the serving is small because the natural sugar adds up.',
+    tags: ['peas', 'crunchy', 'stir-fry', 'sweet'],
+    source: 'USDA FoodData Central: Peas, edible-podded, raw',
+    form: 'bean', color: '#4f8f3a', accent: '#8cc95a',
+  },
+  {
+    id: 'okra', name: 'Okra', emoji: '🌿', category: 'veg', zone: 'veg',
+    serving: '1 cup', servingG: 100, gi: 20, scale: 0.74, ring: 0.48,
+    per100: { kcal: 33, carbs: 7.45, fiber: 3.2, protein: 1.93, fat: 0.19 },
+    blurb: 'Roast or grill it whole to avoid the slime; the fiber is the point.',
+    tags: ['okra', 'roasted', 'southern', 'fiber'],
+    source: 'USDA FoodData Central: Okra, raw',
+    form: 'okra', color: '#5f8f3a', accent: '#b7d46a',
+  },
+  {
+    id: 'eggplant', name: 'Eggplant', emoji: '🍆', category: 'veg', zone: 'veg',
+    serving: '1 cup, cubes', servingG: 82, gi: 15, scale: 0.82, ring: 0.52,
+    per100: { kcal: 25, carbs: 5.88, fiber: 3, protein: 0.98, fat: 0.18 },
+    blurb: 'Meaty when roasted; salt first, then use it as a low-starch base.',
+    tags: ['eggplant', 'roasted', 'purple', 'meaty'],
+    source: 'USDA FoodData Central: Eggplant, raw',
+    form: 'round', color: '#5a3a6a', accent: '#8f6aa8',
+  },
+  {
+    id: 'tomato', name: 'Tomato', emoji: '🍅', category: 'veg', zone: 'veg',
+    serving: '1 cup, chopped', servingG: 123, gi: 15, scale: 0.8, ring: 0.5,
+    per100: { kcal: 18, carbs: 3.89, fiber: 1.2, protein: 0.88, fat: 0.2 },
+    blurb: 'Acidity and umami; a whole tomato is a very different food from ketchup.',
+    tags: ['tomato', 'salad', 'acidic', 'red'],
+    source: 'USDA FoodData Central: Tomatoes, red, ripe, raw',
+    form: 'round', color: '#c94f3d', accent: '#4f8a3a',
+  },
+  {
+    id: 'cremini-mushrooms', name: 'Cremini mushrooms', emoji: '🍄', category: 'veg', zone: 'veg',
+    serving: '1 cup, sliced', servingG: 72, gi: 15, scale: 0.7, ring: 0.46,
+    per100: { kcal: 22, carbs: 4.3, fiber: 0.6, protein: 2.5, fat: 0.1 },
+    blurb: 'Savory umami and almost no carbohydrate; sear hard for colour.',
+    tags: ['mushroom', 'umami', 'saute', 'meaty'],
+    source: 'USDA FoodData Central: Mushrooms, cremini, raw',
+    form: 'mushroom', color: '#a98a6a', accent: '#e0d2b8',
+  },
+  {
+    id: 'artichoke-hearts', name: 'Artichoke hearts', emoji: '🌸', category: 'veg', zone: 'veg',
+    serving: '1 cup, hearts', servingG: 84, gi: 15, scale: 0.8, ring: 0.52,
+    per100: { kcal: 53, carbs: 11.95, fiber: 5.7, protein: 2.89, fat: 0.34 },
+    blurb: 'A high-fiber, buttery vegetable; the jarred hearts are the practical version.',
+    tags: ['artichoke', 'fiber', 'roasted', 'buttery'],
+    source: 'USDA FoodData Central: Artichokes, (globe or french), cooked, boiled, drained',
+    form: 'artichoke', color: '#5f7d3a', accent: '#a8b86a',
+  },
+  {
+    id: 'fennel', name: 'Fennel', emoji: '🌿', category: 'veg', zone: 'veg',
+    serving: '1 cup, sliced', servingG: 87, gi: 15, scale: 0.74, ring: 0.48,
+    per100: { kcal: 31, carbs: 7.3, fiber: 3.1, protein: 1.24, fat: 0.2 },
+    blurb: 'Anise-scented crunch; shave raw into a salad or roast until sweet.',
+    tags: ['fennel', 'salad', 'roasted', 'anise'],
+    source: 'USDA FoodData Central: Fennel, bulb, raw',
+    form: 'bulb', color: '#9fb86a', accent: '#e8f0d0',
+  },
+  {
+    id: 'radishes', name: 'Radishes', emoji: '🥕', category: 'veg', zone: 'veg',
+    serving: '1 cup, sliced', servingG: 116, gi: 15, scale: 0.68, ring: 0.44,
+    per100: { kcal: 16, carbs: 3.4, fiber: 1.6, protein: 0.68, fat: 0.1 },
+    blurb: 'Peppery roots and a classic mashed-potato stand-in when roasted.',
+    tags: ['radish', 'crunchy', 'roasted', 'mash swap'],
+    source: 'USDA FoodData Central: Radishes, raw',
+    form: 'round', color: '#c94f5d', accent: '#f0d0d5',
+  },
+  {
+    id: 'red-onion', name: 'Red onion', emoji: '🧅', category: 'veg', zone: 'veg',
+    serving: '1/4 cup, sliced', servingG: 40, gi: 10, scale: 0.64, ring: 0.42,
+    per100: { kcal: 40, carbs: 9.34, fiber: 1.7, protein: 1.1, fat: 0.1 },
+    blurb: 'A little goes a long way; raw onion brings flavour, not volume.',
+    tags: ['onion', 'flavour', 'salad', 'allium'],
+    source: 'USDA FoodData Central: Onions, red, raw',
+    form: 'bulb', color: '#8f4a6a', accent: '#d8a8c0',
+  },
+  {
+    id: 'leek', name: 'Leek', emoji: '🥬', category: 'veg', zone: 'veg',
+    serving: '1/4 cup, sliced', servingG: 26, gi: 15, scale: 0.66, ring: 0.44,
+    per100: { kcal: 61, carbs: 14.15, fiber: 1.8, protein: 1.5, fat: 0.3 },
+    blurb: 'Sweet allium; use it as an aromatic and keep the serving modest.',
+    tags: ['leek', 'allium', 'soup', 'aromatic'],
+    source: 'USDA FoodData Central: Leeks, raw',
+    form: 'long', color: '#8fae5a', accent: '#f0ead8',
+  },
+  {
+    id: 'garlic', name: 'Garlic', emoji: '🧄', category: 'veg', zone: 'veg',
+    serving: '1 clove', servingG: 3, gi: 30, scale: 0.45, ring: 0.32,
+    per100: { kcal: 149, carbs: 33.06, fiber: 2.1, protein: 6.36, fat: 0.5 },
+    blurb: 'A clove carries flavour and a little carbohydrate; the serving is one clove.',
+    tags: ['garlic', 'allium', 'flavour', 'aromatic'],
+    source: 'USDA FoodData Central: Garlic, raw',
+    form: 'bulb', color: '#e8dfc8', accent: '#c9b88f',
+  },
+  {
+    id: 'hearts-of-palm', name: 'Hearts of palm', emoji: '🌴', category: 'veg', zone: 'veg',
+    serving: '1 cup, sliced', servingG: 73, gi: 15, scale: 0.74, ring: 0.48,
+    per100: { kcal: 28, carbs: 4.62, fiber: 2.4, protein: 2.7, fat: 0.62 },
+    blurb: 'Pale, crisp hearts with a delicate artichoke-like flavour.',
+    tags: ['palm', 'salad', 'crunchy', 'vegan'],
+    source: 'USDA FoodData Central: Hearts of palm, canned',
+    form: 'long', color: '#e8e0c8', accent: '#c9b88f',
+  },
+  {
     id: 'salmon', name: 'Wild salmon', emoji: '🐟', category: 'protein', zone: 'protein',
     serving: '3.5 oz fillet', servingG: 100, gi: 0, scale: 1.0, ring: 0.58,
     per100: { kcal: 142, carbs: 0, fiber: 0, protein: 19.84, fat: 6.34 },
@@ -113,6 +329,96 @@ const FOODS = [
     source: 'USDA FoodData Central: Tofu, raw, firm, prepared with calcium sulfate',
   },
   {
+    id: 'shrimp', name: 'Shrimp', emoji: '🍤', category: 'protein', zone: 'protein',
+    serving: '3 oz, cooked', servingG: 85, gi: 0, scale: 0.82, ring: 0.52,
+    per100: { kcal: 99, carbs: 0.2, fiber: 0, protein: 24, fat: 0.28 },
+    blurb: 'Lean shellfish with no meaningful carbohydrate; watch the breading, not the shrimp.',
+    tags: ['seafood', 'shellfish', 'grilled', 'lean'],
+    source: 'USDA FoodData Central: Crustaceans, shrimp, cooked',
+    form: 'shrimp', color: '#e88a70', accent: '#f3b39c',
+  },
+  {
+    id: 'tuna', name: 'Tuna', emoji: '🐟', category: 'protein', zone: 'protein',
+    serving: '3 oz, canned in water', servingG: 85, gi: 0, scale: 0.84, ring: 0.54,
+    per100: { kcal: 116, carbs: 0, fiber: 0, protein: 25.5, fat: 0.8 },
+    blurb: 'Convenient complete protein; choose water-packed and skip sweetened mayo.',
+    tags: ['seafood', 'fish', 'canned', 'lean'],
+    source: 'USDA FoodData Central: Fish, tuna, light, canned in water, drained',
+    form: 'fillet', color: '#c98a76', accent: '#e8b8a0',
+  },
+  {
+    id: 'cod', name: 'Cod', emoji: '🐟', category: 'protein', zone: 'protein',
+    serving: '3.5 oz fillet', servingG: 100, gi: 0, scale: 0.84, ring: 0.54,
+    per100: { kcal: 82, carbs: 0, fiber: 0, protein: 17.8, fat: 0.7 },
+    blurb: 'Very lean white fish that takes on the flavour of the pan.',
+    tags: ['seafood', 'fish', 'baked', 'lean'],
+    source: 'USDA FoodData Central: Fish, cod, Atlantic, raw',
+    form: 'fillet', color: '#e8dcc0', accent: '#f7f0dd',
+  },
+  {
+    id: 'sardines', name: 'Sardines', emoji: '🐟', category: 'protein', zone: 'protein',
+    serving: '1 tin (3 oz)', servingG: 85, gi: 0, scale: 0.76, ring: 0.5,
+    per100: { kcal: 208, carbs: 0, fiber: 0, protein: 24.6, fat: 11.5 },
+    blurb: 'Small fish with omega-3s and calcium if you eat the bones; no carbohydrate.',
+    tags: ['seafood', 'fish', 'canned', 'omega-3'],
+    source: 'USDA FoodData Central: Fish, sardine, Atlantic, canned in oil, drained',
+    form: 'smallfish', color: '#8a9aa8', accent: '#c8d4dc',
+  },
+  {
+    id: 'trout', name: 'Rainbow trout', emoji: '🐟', category: 'protein', zone: 'protein',
+    serving: '3.5 oz fillet', servingG: 100, gi: 0, scale: 0.84, ring: 0.54,
+    per100: { kcal: 148, carbs: 0, fiber: 0, protein: 20.8, fat: 6.6 },
+    blurb: 'A delicate freshwater fish with a similar omega-3 profile to salmon.',
+    tags: ['seafood', 'fish', 'baked', 'omega-3'],
+    source: 'USDA FoodData Central: Fish, trout, rainbow, wild, raw',
+    form: 'fillet', color: '#e89078', accent: '#f7c0a8',
+  },
+  {
+    id: 'turkey', name: 'Turkey breast', emoji: '🦃', category: 'protein', zone: 'protein',
+    serving: '3.5 oz, raw', servingG: 100, gi: 0, scale: 0.86, ring: 0.54,
+    per100: { kcal: 114, carbs: 0, fiber: 0, protein: 23.7, fat: 2.5 },
+    blurb: 'Lean poultry; choose plain breast, not honey-glazed or breaded slices.',
+    tags: ['poultry', 'lean', 'roasted', 'protein'],
+    source: 'USDA FoodData Central: Turkey, breast, from whole bird, meat only, raw',
+    form: 'poultry', color: '#d8b08a', accent: '#f0d0b0',
+  },
+  {
+    id: 'beef-sirloin', name: 'Beef sirloin', emoji: '🥩', category: 'protein', zone: 'protein',
+    serving: '3.5 oz, raw', servingG: 100, gi: 0, scale: 0.86, ring: 0.56,
+    per100: { kcal: 201, carbs: 0, fiber: 0, protein: 25.2, fat: 10.5 },
+    blurb: 'Unprocessed red meat in a modest portion; pair with a large vegetable half.',
+    tags: ['beef', 'lean', 'grilled', 'protein'],
+    source: 'USDA FoodData Central: Beef, top sirloin, steak, separable lean only, raw',
+    form: 'steak', color: '#9a4f3d', accent: '#c97a5f',
+  },
+  {
+    id: 'pork-tenderloin', name: 'Pork tenderloin', emoji: '🥩', category: 'protein', zone: 'protein',
+    serving: '3.5 oz, raw', servingG: 100, gi: 0, scale: 0.86, ring: 0.54,
+    per100: { kcal: 143, carbs: 0, fiber: 0, protein: 26, fat: 3.5 },
+    blurb: 'The leanest cut of pork; roast whole and slice across the grain.',
+    tags: ['pork', 'lean', 'roasted', 'protein'],
+    source: 'USDA FoodData Central: Pork, fresh, loin, tenderloin, separable lean only, raw',
+    form: 'meat', color: '#e0a8a0', accent: '#f0c8c0',
+  },
+  {
+    id: 'tempeh', name: 'Tempeh', emoji: '🧆', category: 'protein', zone: 'protein',
+    serving: '3 oz', servingG: 84, gi: 15, scale: 0.78, ring: 0.5,
+    per100: { kcal: 192, carbs: 7.64, fiber: 3, protein: 20.3, fat: 10.8 },
+    blurb: 'Fermented soy with plant protein and fiber; a firmer, nuttier tofu alternative.',
+    tags: ['plant', 'soy', 'vegan', 'fermented'],
+    source: 'USDA FoodData Central: Tempeh',
+    form: 'tempeh', color: '#c9a86a', accent: '#8f6a3a',
+  },
+  {
+    id: 'greek-yogurt', name: 'Greek yogurt', emoji: '🥣', category: 'protein', zone: 'protein',
+    serving: '3/4 cup, plain nonfat', servingG: 170, gi: 35, scale: 0.84, ring: 0.54,
+    per100: { kcal: 59, carbs: 3.6, fiber: 0, protein: 10.2, fat: 0.4 },
+    blurb: 'High protein and low carbohydrate when it is plain; fruit flavoured cups are dessert.',
+    tags: ['dairy', 'yogurt', 'breakfast', 'protein'],
+    source: 'USDA FoodData Central: Yogurt, Greek, plain, nonfat',
+    form: 'yogurt', color: '#f7f3e8', accent: '#e8dfc8',
+  },
+  {
     id: 'avocado', name: 'Avocado', emoji: '🥑', category: 'fat', zone: 'fat',
     serving: '½ small avocado', servingG: 75, gi: 10, scale: 0.9, ring: 0.48,
     per100: { kcal: 160, carbs: 8.53, fiber: 6.7, protein: 2.0, fat: 14.66 },
@@ -121,7 +427,7 @@ const FOODS = [
     source: 'USDA FoodData Central: Avocados, raw, all commercial varieties',
   },
   {
-    id: 'almonds', name: 'Almonds', emoji: '🌰', category: 'fat', zone: 'fat',
+    id: 'almonds', name: 'Almonds', emoji: '🌰', category: 'nuts', zone: 'fat',
     serving: '1 oz (23 nuts)', servingG: 28, gi: 15, scale: 0.8, ring: 0.46,
     per100: { kcal: 579, carbs: 21.55, fiber: 12.5, protein: 21.15, fat: 49.93 },
     blurb: 'Crunch, magnesium and 3.5 g fiber per ounce. A handful beats a biscuit.',
@@ -129,7 +435,7 @@ const FOODS = [
     source: 'USDA FoodData Central: Nuts, almonds (SR Legacy)',
   },
   {
-    id: 'walnuts', name: 'Walnuts', emoji: '🥜', category: 'fat', zone: 'fat',
+    id: 'walnuts', name: 'Walnuts', emoji: '🥜', category: 'nuts', zone: 'fat',
     serving: '1 oz (14 halves)', servingG: 28, gi: 15, scale: 0.82, ring: 0.46,
     per100: { kcal: 654, carbs: 13.71, fiber: 6.7, protein: 15.23, fat: 65.21 },
     blurb: 'Plant omega-3 ALA and a satisfying stand-in for sugary snacks.',
@@ -145,12 +451,120 @@ const FOODS = [
     source: 'USDA FoodData Central: Oil, olive, salad or cooking',
   },
   {
-    id: 'chia', name: 'Chia seeds', emoji: '🌱', category: 'fat', zone: 'fat',
+    id: 'chia', name: 'Chia seeds', emoji: '🌱', category: 'nuts', zone: 'fat',
     serving: '2 tbsp', servingG: 24, gi: 15, scale: 0.68, ring: 0.38,
     per100: { kcal: 486, carbs: 42.12, fiber: 34.4, protein: 16.54, fat: 30.74 },
     blurb: 'Gels into pudding and carries 9.8 g fiber per ounce, so most of its carb is fiber.',
     tags: ['seeds', 'pudding', 'fiber', 'bread swap', 'healthy fat'],
     source: 'USDA FoodData Central: Seeds, chia seeds, dried',
+  },
+  {
+    id: 'pecans', name: 'Pecans', emoji: '🌰', category: 'nuts', zone: 'fat',
+    serving: '1 oz (19 halves)', servingG: 28, gi: 15, scale: 0.78, ring: 0.5,
+    per100: { kcal: 691, carbs: 13.86, fiber: 9.6, protein: 9.17, fat: 71.97 },
+    blurb: 'Buttery nuts with the lowest net carb count in the pantry.',
+    tags: ['nuts', 'pecan', 'snack', 'baking'],
+    source: 'USDA FoodData Central: Nuts, pecans',
+    form: 'nut', color: '#8f5e3a', accent: '#c9a06a',
+  },
+  {
+    id: 'pistachios', name: 'Pistachios', emoji: '🌰', category: 'nuts', zone: 'fat',
+    serving: '1 oz (49 nuts)', servingG: 28, gi: 15, scale: 0.74, ring: 0.48,
+    per100: { kcal: 560, carbs: 27.17, fiber: 10.6, protein: 20.16, fat: 45.32 },
+    blurb: 'Shelling them slows the snack down; a full ounce still carries some carbohydrate.',
+    tags: ['nuts', 'pistachio', 'snack', 'shelled'],
+    source: 'USDA FoodData Central: Nuts, pistachio nuts, dry roasted, without salt',
+    form: 'nut', color: '#8fa85a', accent: '#d8c88a',
+  },
+  {
+    id: 'macadamia', name: 'Macadamia nuts', emoji: '🌰', category: 'nuts', zone: 'fat',
+    serving: '1 oz (10 nuts)', servingG: 28, gi: 15, scale: 0.76, ring: 0.48,
+    per100: { kcal: 718, carbs: 13.82, fiber: 8.6, protein: 7.91, fat: 75.77 },
+    blurb: 'Rich and low in carbohydrate; the calorie density is the trade-off.',
+    tags: ['nuts', 'macadamia', 'snack', 'rich'],
+    source: 'USDA FoodData Central: Nuts, macadamia nuts, raw',
+    form: 'nut', color: '#d8c8a8', accent: '#f0e8d0',
+  },
+  {
+    id: 'pine-nuts', name: 'Pine nuts', emoji: '🌰', category: 'nuts', zone: 'fat',
+    serving: '1 oz', servingG: 28, gi: 15, scale: 0.66, ring: 0.44,
+    per100: { kcal: 673, carbs: 13.08, fiber: 3.7, protein: 13.69, fat: 68.37 },
+    blurb: 'Toast briefly and scatter over greens; a little goes a long way.',
+    tags: ['nuts', 'pine nut', 'toasted', 'pesto'],
+    source: 'USDA FoodData Central: Nuts, pine nuts, dried',
+    form: 'nut', color: '#e0c8a0', accent: '#f7ead0',
+  },
+  {
+    id: 'cashews', name: 'Cashews', emoji: '🌰', category: 'nuts', zone: 'fat',
+    serving: '0.7 oz', servingG: 20, gi: 22, scale: 0.68, ring: 0.44,
+    per100: { kcal: 553, carbs: 30.19, fiber: 3.3, protein: 18.22, fat: 43.85 },
+    blurb: 'Creamy and higher in carbohydrate than other nuts, so the serving is deliberately small.',
+    tags: ['nuts', 'cashew', 'snack', 'creamy'],
+    source: 'USDA FoodData Central: Nuts, cashew nuts, raw',
+    form: 'nut', color: '#d8b88a', accent: '#f0dcc0',
+  },
+  {
+    id: 'flaxseed', name: 'Flaxseed', emoji: '🌱', category: 'nuts', zone: 'fat',
+    serving: '2 tbsp, ground', servingG: 15, gi: 15, scale: 0.6, ring: 0.4,
+    per100: { kcal: 534, carbs: 28.88, fiber: 27.3, protein: 18.26, fat: 42.16 },
+    blurb: 'Mostly fiber and ALA; grind it so the body can reach the nutrients.',
+    tags: ['seeds', 'flax', 'fiber', 'omega-3'],
+    source: 'USDA FoodData Central: Seeds, flaxseed',
+    form: 'seed', color: '#7a5a3a', accent: '#c9a86a',
+  },
+  {
+    id: 'hemp-hearts', name: 'Hemp hearts', emoji: '🌱', category: 'nuts', zone: 'fat',
+    serving: '3 tbsp', servingG: 20, gi: 15, scale: 0.6, ring: 0.4,
+    per100: { kcal: 553, carbs: 8.67, fiber: 4, protein: 31.56, fat: 48.75 },
+    blurb: 'Soft seeds with plant protein and minerals; no grinding needed.',
+    tags: ['seeds', 'hemp', 'protein', 'topping'],
+    source: 'USDA FoodData Central: Seeds, hemp seed, hulled',
+    form: 'seed', color: '#a8b88a', accent: '#e0e8c8',
+  },
+  {
+    id: 'pumpkin-seeds', name: 'Pumpkin seeds', emoji: '🎃', category: 'nuts', zone: 'fat',
+    serving: '1 oz', servingG: 28, gi: 15, scale: 0.72, ring: 0.46,
+    per100: { kcal: 559, carbs: 10.71, fiber: 6, protein: 30.23, fat: 49.05 },
+    blurb: 'Pepitas bring magnesium and crunch; toast them for a deeper flavour.',
+    tags: ['seeds', 'pepita', 'snack', 'magnesium'],
+    source: 'USDA FoodData Central: Seeds, pumpkin and squash seed kernels, roasted',
+    form: 'seed', color: '#5f7a3a', accent: '#c8d8a0',
+  },
+  {
+    id: 'sunflower-seeds', name: 'Sunflower seeds', emoji: '🌻', category: 'nuts', zone: 'fat',
+    serving: '1 oz', servingG: 28, gi: 15, scale: 0.72, ring: 0.46,
+    per100: { kcal: 584, carbs: 20, fiber: 8.6, protein: 20.78, fat: 51.46 },
+    blurb: 'A high-fiber seed; the carbohydrate is mostly fiber but the serving still matters.',
+    tags: ['seeds', 'sunflower', 'snack', 'fiber'],
+    source: 'USDA FoodData Central: Seeds, sunflower seed kernels, dried',
+    form: 'seed', color: '#4a4a4a', accent: '#d8c8a0',
+  },
+  {
+    id: 'sesame-seeds', name: 'Sesame seeds', emoji: '🌾', category: 'nuts', zone: 'fat',
+    serving: '2 tbsp', servingG: 15, gi: 15, scale: 0.58, ring: 0.4,
+    per100: { kcal: 573, carbs: 23.45, fiber: 11.8, protein: 17.73, fat: 49.67 },
+    blurb: 'Tiny seeds with calcium and a nutty finish; tahini is the same food, ground.',
+    tags: ['seeds', 'sesame', 'tahini', 'calcium'],
+    source: 'USDA FoodData Central: Seeds, sesame seeds, whole, dried',
+    form: 'seed', color: '#e8dcc0', accent: '#c9b88f',
+  },
+  {
+    id: 'black-olives', name: 'Black olives', emoji: '🫒', category: 'fat', zone: 'fat',
+    serving: 'about 10 olives', servingG: 30, gi: 15, scale: 0.64, ring: 0.42,
+    per100: { kcal: 115, carbs: 6.26, fiber: 3.2, protein: 0.84, fat: 10.68 },
+    blurb: 'Briny monounsaturated fat; a small handful is the serving, not the whole jar.',
+    tags: ['olives', 'briny', 'snack', 'mediterranean'],
+    source: 'USDA FoodData Central: Olives, ripe, canned (small-extra large)',
+    form: 'olives', color: '#3a3a2a', accent: '#6a6a4a',
+  },
+  {
+    id: 'avocado-oil', name: 'Avocado oil', emoji: '🫗', category: 'fat', zone: 'fat',
+    serving: '1 tbsp', servingG: 14, gi: 0, scale: 0.62, ring: 0.38,
+    per100: { kcal: 884, carbs: 0, fiber: 0, protein: 0, fat: 100 },
+    blurb: 'A neutral high-heat oil with zero carbohydrate; measure the drizzle.',
+    tags: ['oil', 'cooking', 'drizzle', 'monounsaturated'],
+    source: 'USDA FoodData Central: Oil, avocado',
+    form: 'oilbottle', color: '#c8a52f', accent: '#e8d48a',
   },
   {
     id: 'strawberries', name: 'Strawberries', emoji: '🍓', category: 'berry', zone: 'veg',
@@ -817,6 +1231,337 @@ function makeBlueberry() {
   return g;
 }
 
+
+/* --------------------------------------------------------------------------
+   Reusable procedural forms for the expanded pantry.
+   Each factory takes the food record so one shape family can serve many foods
+   while keeping the colour and proportion recognizable on the plate.
+   -------------------------------------------------------------------------- */
+
+function tone(food, fallback, options = {}) {
+  return material(food.color || fallback, options);
+}
+
+function accentTone(food, fallback, options = {}) {
+  return material(food.accent || fallback, options);
+}
+
+function makeLeafy(food) {
+  const g = new THREE.Group();
+  const leafMat = tone(food, '#3f7a35', { roughness: 0.76 });
+  const accentMat = accentTone(food, '#8fbf62', { roughness: 0.7 });
+  const stemMat = material(food.accent || '#7fa35a', { roughness: 0.8 });
+  const count = food.id === 'watercress' ? 8 : 6;
+  for (let i = 0; i < count; i += 1) {
+    const angle = (i / count) * Math.PI * 2 + 0.35;
+    const radius = 0.12 + (i % 2) * 0.08;
+    const lift = 0.16 + (i % 3) * 0.035;
+    const long = food.id === 'romaine' ? 0.36 : food.id === 'kale' ? 0.3 : 0.27;
+    part(g, new THREE.SphereGeometry(1, 10, 6), i % 2 ? leafMat : accentMat,
+      [Math.cos(angle) * radius, lift, Math.sin(angle) * radius],
+      [0.18, angle, 0.12], [long, 0.045, long * 0.56]);
+    part(g, new THREE.CylinderGeometry(0.012, 0.014, 0.2, 5), stemMat,
+      [Math.cos(angle) * radius * 0.5, lift - 0.07, Math.sin(angle) * radius * 0.5],
+      [0.35, angle, 0.18]);
+  }
+  if (food.id === 'bok-choy') {
+    part(g, new THREE.CylinderGeometry(0.07, 0.1, 0.3, 8), material('#f0ead8', { roughness: 0.65 }), [0, 0.16, 0]);
+  }
+  return g;
+}
+
+function makeFloret(food) {
+  const g = new THREE.Group();
+  const baseMat = tone(food, '#5a8f3a', { roughness: 0.8 });
+  const lightMat = accentTone(food, '#8ebc56', { roughness: 0.78 });
+  part(g, new THREE.CylinderGeometry(0.06, 0.09, 0.25, 7), material('#7f9a58', { roughness: 0.8 }), [0, 0.13, 0]);
+  const spots = [[0, 0.3, 0, 0.17], [-0.13, 0.27, 0.06, 0.13], [0.13, 0.28, 0.07, 0.13], [0.02, 0.26, -0.14, 0.13], [-0.08, 0.38, -0.03, 0.11], [0.1, 0.36, -0.08, 0.1]];
+  spots.forEach(([x, y, z, r], index) => part(g, blob(r, 1), index % 2 ? baseMat : lightMat, [x, y, z]));
+  return g;
+}
+
+function makeCabbage(food) {
+  const g = new THREE.Group();
+  const outer = tone(food, '#7a3f6a', { roughness: 0.7 });
+  const inner = accentTone(food, '#c98ab5', { roughness: 0.72 });
+  part(g, new THREE.SphereGeometry(0.4, 18, 12), outer, [0, 0.3, 0], [0, 0.3, 0], [1, 0.82, 1]);
+  part(g, new THREE.SphereGeometry(0.33, 16, 10), inner, [0, 0.36, 0.02], [0, -0.2, 0], [1, 0.72, 1]);
+  [[-0.32, 0.2, 0.12, -0.5], [0.32, 0.2, 0.08, 0.6], [0.02, 0.16, -0.34, 2.1]].forEach(([x, y, z, rot]) => {
+    part(g, new THREE.SphereGeometry(1, 9, 5), outer, [x, y, z], [0.28, rot, 0], [0.26, 0.04, 0.14]);
+  });
+  return g;
+}
+
+function makeLong(food) {
+  const g = new THREE.Group();
+  const body = tone(food, '#4f8a3a', { roughness: 0.62 });
+  const accent = accentTone(food, '#9fc46a', { roughness: 0.6 });
+  if (food.id === 'celery') {
+    for (let i = 0; i < 3; i += 1) {
+      part(g, new THREE.CylinderGeometry(0.055, 0.06, 0.95, 8), i === 1 ? accent : body,
+        [0, 0.16, (i - 1) * 0.11], [0, 0, Math.PI / 2]);
+    }
+    return g;
+  }
+  if (food.id === 'leek') {
+    part(g, new THREE.CylinderGeometry(0.13, 0.16, 0.42, 10), material('#f0ead8', { roughness: 0.55 }), [0, 0.16, 0], [0, 0, Math.PI / 2]);
+    part(g, new THREE.ConeGeometry(0.13, 0.52, 8), body, [0.42, 0.22, 0], [0, 0, Math.PI / 2]);
+    part(g, new THREE.ConeGeometry(0.1, 0.42, 8), accent, [0.36, 0.32, 0.1], [0.2, 0, Math.PI / 2.4]);
+    return g;
+  }
+  part(g, new THREE.CylinderGeometry(0.14, 0.15, 0.98, 14), body, [0, 0.18, 0], [0, 0, Math.PI / 2]);
+  part(g, new THREE.SphereGeometry(0.15, 12, 8), body, [-0.49, 0.18, 0], [0, 0, 0], [0.6, 1, 1]);
+  part(g, new THREE.SphereGeometry(0.15, 12, 8), body, [0.49, 0.18, 0], [0, 0, 0], [0.6, 1, 1]);
+  part(g, new THREE.BoxGeometry(0.7, 0.012, 0.035), accent, [0, 0.33, 0.02]);
+  return g;
+}
+
+function makeBean(food) {
+  const g = new THREE.Group();
+  const pod = tone(food, '#3f7a34', { roughness: 0.55 });
+  const pea = accentTone(food, '#7fb84a', { roughness: 0.6 });
+  [-0.12, 0, 0.12].forEach((z, index) => {
+    part(g, new THREE.CapsuleGeometry(0.055, 0.62, 4, 8), pod, [0, 0.12 + index * 0.01, z], [0, 0, Math.PI / 2], [1, 1, 0.8]);
+    for (let i = 0; i < 3; i += 1) {
+      part(g, new THREE.SphereGeometry(0.038, 7, 5), pea, [-0.2 + i * 0.2, 0.16, z], [0, 0, 0], [1, 0.7, 0.9]);
+    }
+  });
+  return g;
+}
+
+function makeOkra(food) {
+  const g = new THREE.Group();
+  const body = tone(food, '#5f8f3a', { roughness: 0.62 });
+  const ridge = accentTone(food, '#b7d46a', { roughness: 0.65 });
+  for (let i = 0; i < 4; i += 1) {
+    const x = (i - 1.5) * 0.13;
+    part(g, new THREE.CylinderGeometry(0.045, 0.06, 0.5, 8), body, [x, 0.12, 0], [Math.PI / 2 + 0.08, 0, 0.12]);
+    for (let r = 0; r < 4; r += 1) {
+      const angle = (r / 4) * Math.PI * 2;
+      part(g, new THREE.BoxGeometry(0.012, 0.44, 0.012), ridge, [x + Math.cos(angle) * 0.045, 0.12, Math.sin(angle) * 0.045], [Math.PI / 2, 0, 0.12]);
+    }
+    part(g, new THREE.ConeGeometry(0.045, 0.12, 7), ridge, [x, 0.16, -0.3], [Math.PI / 2, 0, 0.12]);
+  }
+  return g;
+}
+
+function makeRound(food) {
+  const g = new THREE.Group();
+  const flesh = tone(food, '#c94f3d', { roughness: 0.52 });
+  const accent = accentTone(food, '#4f8a3a', { roughness: 0.68 });
+  if (food.id === 'eggplant') {
+    part(g, new THREE.SphereGeometry(0.36, 18, 14), flesh, [0, 0.42, 0], [0, 0, 0], [0.92, 1.4, 0.92]);
+    part(g, new THREE.ConeGeometry(0.16, 0.22, 8), accent, [0, 0.84, 0], [0, 0, 0]);
+    part(g, new THREE.SphereGeometry(0.04, 6, 4), accent, [0, 0.95, 0]);
+    return g;
+  }
+  part(g, new THREE.SphereGeometry(0.34, 18, 14), flesh, [0, 0.36, 0], [0, 0.2, 0], [1, 0.9, 1]);
+  for (let i = 0; i < 5; i += 1) {
+    const angle = (i / 5) * Math.PI * 2;
+    part(g, new THREE.SphereGeometry(1, 7, 5), accent, [Math.cos(angle) * 0.14, 0.67, Math.sin(angle) * 0.14], [0.2, angle, 0.2], [0.13, 0.03, 0.06]);
+  }
+  part(g, new THREE.CylinderGeometry(0.025, 0.035, 0.12, 5), accent, [0, 0.75, 0]);
+  return g;
+}
+
+function makeMushroom(food) {
+  const g = new THREE.Group();
+  const cap = tone(food, '#a98a6a', { roughness: 0.7 });
+  const stem = accentTone(food, '#e0d2b8', { roughness: 0.62 });
+  [[-0.16, 0, 0.08], [0.14, 0.02, -0.08], [0, 0.02, 0.18]].forEach(([x, y, z], index) => {
+    part(g, new THREE.CylinderGeometry(0.055, 0.075, 0.2, 7), stem, [x, 0.12 + y, z]);
+    part(g, new THREE.SphereGeometry(1, 12, 7), cap, [x, 0.27 + y, z], [0, index, 0], [0.23, 0.12, 0.23]);
+  });
+  return g;
+}
+
+function makeArtichoke(food) {
+  const g = new THREE.Group();
+  const leaf = tone(food, '#5f7d3a', { roughness: 0.72 });
+  const tip = accentTone(food, '#a8b86a', { roughness: 0.7 });
+  part(g, new THREE.CylinderGeometry(0.18, 0.24, 0.12, 12), leaf, [0, 0.08, 0]);
+  for (let layer = 0; layer < 3; layer += 1) {
+    for (let i = 0; i < 7; i += 1) {
+      const angle = (i / 7) * Math.PI * 2 + layer * 0.4;
+      const radius = 0.2 - layer * 0.045;
+      part(g, new THREE.ConeGeometry(0.085, 0.34, 6), layer % 2 ? leaf : tip, [Math.cos(angle) * radius, 0.23 + layer * 0.04, Math.sin(angle) * radius], [0.5, angle, 0.1]);
+    }
+  }
+  part(g, new THREE.SphereGeometry(0.14, 12, 8), tip, [0, 0.42, 0]);
+  return g;
+}
+
+function makeBulb(food) {
+  const g = new THREE.Group();
+  const body = tone(food, '#8f4a6a', { roughness: 0.58 });
+  const accent = accentTone(food, '#d8a8c0', { roughness: 0.6 });
+  if (food.id === 'garlic') {
+    for (let i = 0; i < 4; i += 1) {
+      const angle = (i / 4) * Math.PI * 2;
+      part(g, new THREE.CapsuleGeometry(0.09, 0.22, 4, 8), i % 2 ? body : accent, [Math.cos(angle) * 0.1, 0.2, Math.sin(angle) * 0.1], [0.2, angle, 0.35]);
+    }
+    part(g, new THREE.ConeGeometry(0.05, 0.13, 6), material('#c9b88f', { roughness: 0.8 }), [0, 0.42, 0]);
+    return g;
+  }
+  part(g, new THREE.SphereGeometry(0.34, 16, 12), body, [0, 0.34, 0], [0, 0, 0], [1, 0.95, 1]);
+  for (let i = 0; i < 3; i += 1) {
+    const angle = (i / 3) * Math.PI;
+    part(g, new THREE.TorusGeometry(0.3, 0.012, 4, 18, Math.PI), accent, [0, 0.34, 0], [0.2, angle, 0], [1, 0.9, 1]);
+  }
+  if (food.id === 'fennel') {
+    part(g, new THREE.CylinderGeometry(0.04, 0.07, 0.28, 6), accent, [0, 0.6, 0]);
+    for (let i = 0; i < 4; i += 1) {
+      const angle = (i / 4) * Math.PI * 2;
+      part(g, new THREE.SphereGeometry(1, 7, 4), accent, [Math.cos(angle) * 0.11, 0.72, Math.sin(angle) * 0.11], [0.3, angle, 0], [0.06, 0.15, 0.02]);
+    }
+  } else {
+    part(g, new THREE.CylinderGeometry(0.025, 0.04, 0.15, 5), accent, [0, 0.66, 0]);
+  }
+  return g;
+}
+
+function makeShrimp(food) {
+  const g = new THREE.Group();
+  const shell = tone(food, '#e88a70', { roughness: 0.45 });
+  const stripe = accentTone(food, '#f3b39c', { roughness: 0.5 });
+  [[-0.18, 0.1, 0.12], [0.16, 0.14, -0.06]].forEach(([x, y, z], index) => {
+    part(g, new THREE.TorusGeometry(0.19, 0.075, 8, 18, Math.PI * 1.2), index % 2 ? stripe : shell, [x, y, z], [-Math.PI / 2, 0, index * 0.7]);
+    part(g, new THREE.ConeGeometry(0.09, 0.18, 6), stripe, [x - 0.18, y, z + 0.06], [0, 0, 1.1]);
+  });
+  return g;
+}
+
+function makeFillet(food) {
+  const g = new THREE.Group();
+  const flesh = tone(food, '#e8c8b8', { roughness: 0.48 });
+  const pale = accentTone(food, '#f7e8d8', { roughness: 0.5 });
+  part(g, new THREE.CapsuleGeometry(0.23, 0.5, 5, 12), flesh, [0, 0.2, 0], [0, 0, Math.PI / 2], [1, 0.62, 1.22]);
+  for (let i = 0; i < 4; i += 1) {
+    part(g, new THREE.BoxGeometry(0.04, 0.014, 0.42), pale, [-0.24 + i * 0.16, 0.345, 0], [0, 0.12, 0]);
+  }
+  return g;
+}
+
+function makeSmallFish(food) {
+  const g = new THREE.Group();
+  const body = tone(food, '#8a9aa8', { roughness: 0.45 });
+  const belly = accentTone(food, '#c8d4dc', { roughness: 0.5 });
+  [-0.18, 0, 0.18].forEach((z, index) => {
+    part(g, new THREE.CapsuleGeometry(0.06, 0.3, 4, 8), index % 2 ? belly : body, [0, 0.12, z], [0, 0, Math.PI / 2], [0.8, 1, 1]);
+    part(g, new THREE.ConeGeometry(0.09, 0.14, 5), body, [-0.24, 0.12, z], [0, 0, Math.PI / 2]);
+    part(g, new THREE.SphereGeometry(0.014, 6, 4), material('#1b1b18'), [0.16, 0.15, z]);
+  });
+  return g;
+}
+
+function makePoultry(food) {
+  const g = new THREE.Group();
+  const meat = tone(food, '#d8b08a', { roughness: 0.64 });
+  const char = accentTone(food, '#a87858', { roughness: 0.8 });
+  part(g, new THREE.CapsuleGeometry(0.23, 0.52, 5, 12), meat, [0, 0.2, 0], [0, 0, Math.PI / 2], [1, 0.62, 1.12]);
+  [-0.2, 0, 0.2].forEach((x, index) => {
+    part(g, new THREE.BoxGeometry(0.035, 0.012, 0.33), char, [x, 0.3, 0.02], [0, 0.2 + index * 0.08, 0]);
+  });
+  return g;
+}
+
+function makeSteak(food) {
+  const g = new THREE.Group();
+  const meat = tone(food, '#9a4f3d', { roughness: 0.58 });
+  const fat = accentTone(food, '#c97a5f', { roughness: 0.65 });
+  part(g, new THREE.BoxGeometry(0.78, 0.18, 0.5), meat, [0, 0.17, 0], [0, 0.12, 0]);
+  part(g, new THREE.BoxGeometry(0.8, 0.05, 0.1), fat, [0, 0.28, 0.2], [0, 0.12, 0]);
+  [-0.22, 0, 0.22].forEach((x) => {
+    part(g, new THREE.BoxGeometry(0.035, 0.012, 0.44), material('#6a332a'), [x, 0.275, 0], [0, 0.12, 0]);
+  });
+  return g;
+}
+
+function makeMeat(food) {
+  const g = new THREE.Group();
+  const meat = tone(food, '#e0a8a0', { roughness: 0.55 });
+  const marble = accentTone(food, '#f6d8d0', { roughness: 0.6 });
+  part(g, new THREE.CapsuleGeometry(0.24, 0.48, 5, 12), meat, [0, 0.19, 0], [0, 0, Math.PI / 2], [1, 0.58, 1.08]);
+  [-0.18, 0.02, 0.2].forEach((x, index) => {
+    part(g, new THREE.BoxGeometry(0.02, 0.012, 0.34), marble, [x, 0.29, 0], [0, 0.3 + index * 0.2, 0]);
+  });
+  return g;
+}
+
+function makeTempeh(food) {
+  const g = new THREE.Group();
+  const cake = tone(food, '#c9a86a', { roughness: 0.72 });
+  const speck = accentTone(food, '#8f6a3a', { roughness: 0.8 });
+  [[-0.08, 0.18, 0.04, 0.2], [0.07, 0.42, -0.02, -0.1]].forEach(([x, y, z, rot]) => {
+    part(g, new THREE.BoxGeometry(0.46, 0.2, 0.28), cake, [x, y, z], [0, rot, 0.02]);
+    for (let i = 0; i < 5; i += 1) {
+      part(g, new THREE.SphereGeometry(0.018, 5, 4), speck, [x - 0.16 + i * 0.08, y + 0.1, z - 0.08 + (i % 2) * 0.16]);
+    }
+  });
+  return g;
+}
+
+function makeYogurt(food) {
+  const g = new THREE.Group();
+  const bowl = material('#eee7d6', { roughness: 0.38 });
+  const cream = tone(food, '#f7f3e8', { roughness: 0.35 });
+  part(g, new THREE.CylinderGeometry(0.4, 0.31, 0.16, 22), bowl, [0, 0.08, 0]);
+  part(g, new THREE.SphereGeometry(1, 18, 10), cream, [0, 0.16, 0], [0, 0, 0], [0.34, 0.16, 0.34]);
+  part(g, new THREE.TorusGeometry(0.12, 0.022, 6, 18, Math.PI * 1.4), accentTone(food, '#e8dfc8', { roughness: 0.4 }), [0, 0.28, 0], [-Math.PI / 2, 0, 0.4], [1, 1, 1]);
+  return g;
+}
+
+function makeNut(food) {
+  const g = new THREE.Group();
+  const shell = tone(food, '#a9743f', { roughness: 0.8 });
+  const light = accentTone(food, '#d5b086', { roughness: 0.82 });
+  const spots = [[-0.28, 0.1, 0.14, 0.5], [0.16, 0.1, 0.2, -0.4], [0.3, 0.1, -0.1, 1.1], [-0.06, 0.11, -0.24, 0.2], [-0.33, 0.09, -0.16, 2.1], [0.05, 0.12, 0.02, -1.2], [0.27, 0.12, 0.18, 0.9]];
+  spots.forEach(([x, y, z, rot], index) => {
+    part(g, new THREE.SphereGeometry(1, 10, 8), index % 2 ? shell : light, [x, y, z], [0.18, rot, 0.14], [0.11, 0.15, 0.05]);
+  });
+  return g;
+}
+
+function makeSeed(food) {
+  const g = new THREE.Group();
+  const bowl = material('#eee7d6', { roughness: 0.4 });
+  const seed = tone(food, '#7a5a3a', { roughness: 0.85 });
+  const fleck = accentTone(food, '#c9a86a', { roughness: 0.85 });
+  part(g, new THREE.CylinderGeometry(0.37, 0.29, 0.13, 20), bowl, [0, 0.07, 0]);
+  part(g, new THREE.CylinderGeometry(0.31, 0.31, 0.02, 20), material('#d9cfb9', { roughness: 0.95 }), [0, 0.075, 0]);
+  for (let i = 0; i < 24; i += 1) {
+    const angle = i * 2.399;
+    const radius = 0.28 * Math.sqrt((i + 1) / 24);
+    part(g, new THREE.SphereGeometry(0.024, 6, 5), i % 3 ? seed : fleck, [Math.cos(angle) * radius, 0.105 + (i % 2) * 0.012, Math.sin(angle) * radius]);
+  }
+  return g;
+}
+
+function makeOlives(food) {
+  const g = new THREE.Group();
+  const olive = tone(food, '#3a3a2a', { roughness: 0.5 });
+  const shine = accentTone(food, '#6a6a4a', { roughness: 0.45 });
+  const spots = [[-0.2, 0.12, 0.1, 0.4], [0.05, 0.12, 0.2, -0.3], [0.22, 0.12, 0.02, 1.2], [-0.1, 0.12, -0.16, 0.8], [0.12, 0.2, -0.12, -0.6], [-0.24, 0.2, -0.04, 1.6]];
+  spots.forEach(([x, y, z, rot], index) => {
+    part(g, new THREE.SphereGeometry(1, 10, 8), index % 2 ? olive : shine, [x, y, z], [0.3, rot, 0.2], [0.11, 0.09, 0.14]);
+    if (index < 2) part(g, new THREE.SphereGeometry(0.025, 6, 5), material('#c94f3d'), [x, y + 0.02, z + 0.09]);
+  });
+  return g;
+}
+
+function makeOilBottle(food) {
+  const g = new THREE.Group();
+  const glass = material(food.color || '#c8a52f', { roughness: 0.15, metalness: 0.05, opacity: 0.75 });
+  const oil = material(food.accent || '#e8d48a', { roughness: 0.25, opacity: 0.85 });
+  part(g, new THREE.CylinderGeometry(0.17, 0.21, 0.52, 16), glass, [0, 0.26, 0]);
+  part(g, new THREE.CylinderGeometry(0.15, 0.17, 0.36, 16), oil, [0, 0.22, 0]);
+  part(g, new THREE.CylinderGeometry(0.07, 0.13, 0.16, 12), glass, [0, 0.59, 0]);
+  part(g, new THREE.CylinderGeometry(0.07, 0.07, 0.18, 12), glass, [0, 0.72, 0]);
+  part(g, new THREE.CylinderGeometry(0.075, 0.075, 0.07, 10), material('#a87b45', { roughness: 0.9 }), [0, 0.83, 0]);
+  part(g, new THREE.BoxGeometry(0.24, 0.19, 0.01), material('#efe4c8', { roughness: 0.9 }), [0, 0.31, 0.185]);
+  return g;
+}
+
 const FOOD_FACTORIES = {
   broccoli: makeBroccoli,
   spinach: makeSpinach,
@@ -836,6 +1581,31 @@ const FOOD_FACTORIES = {
   strawberries: makeStrawberry,
   raspberries: makeRaspberry,
   blueberries: makeBlueberry,
+};
+
+const FORM_FACTORIES = {
+  leafy: makeLeafy,
+  floret: makeFloret,
+  cabbage: makeCabbage,
+  long: makeLong,
+  bean: makeBean,
+  okra: makeOkra,
+  round: makeRound,
+  mushroom: makeMushroom,
+  artichoke: makeArtichoke,
+  bulb: makeBulb,
+  shrimp: makeShrimp,
+  fillet: makeFillet,
+  smallfish: makeSmallFish,
+  poultry: makePoultry,
+  steak: makeSteak,
+  meat: makeMeat,
+  tempeh: makeTempeh,
+  yogurt: makeYogurt,
+  nut: makeNut,
+  seed: makeSeed,
+  olives: makeOlives,
+  oilbottle: makeOilBottle,
 };
 
 function gradientTexture(top, bottom) {
@@ -1014,10 +1784,13 @@ class PlateScene {
     rim.castShadow = true;
     group.add(rim);
 
+    // RingGeometry is rotated onto the XZ plane, which mirrors z. These theta
+    // starts keep the painted sectors aligned with SLOTS and the world-space
+    // labels: veg in front (0…π), protein back-left (π…3π/2), fat back-right.
     const zoneDefs = [
-      { zone: 'veg', start: 0, length: Math.PI },
-      { zone: 'protein', start: Math.PI, length: Math.PI / 2 },
-      { zone: 'fat', start: (3 * Math.PI) / 2, length: Math.PI / 2 },
+      { zone: 'veg', start: Math.PI, length: Math.PI },
+      { zone: 'protein', start: Math.PI / 2, length: Math.PI / 2 },
+      { zone: 'fat', start: 0, length: Math.PI / 2 },
     ];
     for (const def of zoneDefs) {
       const geo = new THREE.RingGeometry(0.34, 3.08, 72, 1, def.start, def.length);
@@ -1184,9 +1957,9 @@ class PlateScene {
   add(entry) {
     const food = FOOD_BY_ID.get(entry.foodId);
     if (!food) return;
-    const factory = FOOD_FACTORIES[food.id];
+    const factory = FOOD_FACTORIES[food.id] || FORM_FACTORIES[food.form];
     if (!factory) return;
-    const group = factory();
+    const group = factory(food);
     group.userData.servingUid = entry.uid;
     group.userData.baseScale = food.scale * 1.18;
     group.userData.phase = (state.seq * 1.7) % 6.28;
@@ -2421,7 +3194,7 @@ function wireEvents() {
       openDialog(dom.guideDialog);
       return;
     }
-    if (/^[1-7]$/.test(event.key)) {
+    if (/^[1-8]$/.test(event.key)) {
       const chips = $$('.chip');
       const chip = chips[Number(event.key) - 1];
       if (chip) chip.click();
@@ -2449,7 +3222,7 @@ async function runSelfTest({ show = false } = {}) {
     }
   };
 
-  check('18 safe whole foods are defined', () => FOODS.length === 18 || `${FOODS.length}`);
+  check('64 safe whole foods are defined', () => FOODS.length === 64 || `${FOODS.length}`);
   check('6 starch/processed warnings are defined', () => WARNINGS.length === 6 || `${WARNINGS.length}`);
   check('6 smart swaps are defined', () => SWAPS.length === 6 || `${SWAPS.length}`);
   check('Food IDs are unique', () => new Set(FOODS.map((food) => food.id)).size === FOODS.length);
@@ -2513,7 +3286,20 @@ async function runSelfTest({ show = false } = {}) {
     const score = summarize(plate).score;
     return score >= 0 && score <= 100;
   });
-  check('Every pantry food has a 3D factory', () => FOODS.every((food) => typeof FOOD_FACTORIES[food.id] === 'function'));
+  check('Every pantry food builds a non-empty 3D mesh', () => FOODS.every((food) => {
+    const factory = FOOD_FACTORIES[food.id] || FORM_FACTORIES[food.form];
+    if (typeof factory !== 'function') return false;
+    const group = factory(food);
+    const ok = Boolean(group && group.children.length);
+    group.traverse((child) => {
+      if (child.geometry) child.geometry.dispose();
+      if (child.material) {
+        if (Array.isArray(child.material)) child.material.forEach((mat) => mat.dispose());
+        else child.material.dispose();
+      }
+    });
+    return ok;
+  }));
   check('Every warning has a source note', () => WARNINGS.every((food) => food.source && food.source.length > 10));
 
   const passed = results.filter((item) => item.ok).length;
@@ -2616,7 +3402,7 @@ function boot() {
   }
 
   window.setTimeout(() => {
-    if (!state.plate.length) announce('Plate builder ready. 18 whole foods available.');
+    if (!state.plate.length) announce('Plate builder ready. 64 whole foods available.');
   }, 1200);
 }
 

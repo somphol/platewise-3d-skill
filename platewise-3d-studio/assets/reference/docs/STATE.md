@@ -12,16 +12,16 @@ it.
 | Session | `ses_e50cc1dc6ffekm230esZitx60J` |
 | Session title | PlateWise 3D food picker project |
 | Started | 2026-11-06T04:52:55.509Z |
-| Captured | 2026-11-06T05:50:07.103Z |
-| Wall-clock elapsed | **0h 57m 12s** (3,432 s) |
+| Captured | 2026-11-06T06:34:06.168Z |
+| Wall-clock elapsed | **1h 41m 11s** (6,071 s) |
 | Model | DeepSeek V4.1 Flash (`opencode-go/deepseek-v4.1-flash`) |
 | Tool | [OpenCode](https://opencode.ai) |
-| Input tokens | 69,663 |
-| Output tokens | 167,686 |
-| Reasoning tokens | 82,461 |
-| Cache read tokens | 39,448,704 |
+| Input tokens | 497,239 |
+| Output tokens | 205,514 |
+| Reasoning tokens | 113,633 |
+| Cache read tokens | 66,089,728 |
 | Cache write tokens | 1,408 |
-| **Total tokens** | **39,769,922** |
+| **Total tokens** | **66,907,522** |
 | Cost | $0.00 (flat-rate plan) |
 | Local browser checks | 47 |
 | In-page checks | 29 |

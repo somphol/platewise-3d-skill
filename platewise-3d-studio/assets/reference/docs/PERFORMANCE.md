@@ -23,7 +23,7 @@ At 1600 × 1000, a freshly loaded empty plate reported:
 
 - 26 draw calls;
 - about 4,090 triangles;
-- 18 pantry cards;
+- 64 pantry cards;
 - 0 console errors.
 
 The balanced eight-item plate adds roughly 150–250 low-poly meshes; the scene

@@ -16,7 +16,7 @@ reference build has the same counts.
 
 Checks required files, docs, Three.js pin, no trackers/remote assets, no
 credentials, local Markdown links, DOM IDs, 4 labelled dialogs, self-test API,
-18/6/6 counts, nutrition formula terms, sources, AGENTS sections, screenshots,
+64/6/6 counts, nutrition formula terms, sources, AGENTS sections, screenshots,
 state.json counters, canonical URL, CI, license, reduced motion and mobile CSS.
 
 Add `docs/index.html` to the required release files. It makes `/docs/` work on
@@ -37,7 +37,7 @@ WebSocket. Flags that matter:
 The mock keychain flags prevent repeated macOS prompts. The suite:
 
 1. clears local storage and reloads (clean start);
-2. checks boot, title, 18/6/6, six sources, canvas, at least one frame;
+2. checks boot, title, 64/6/6, six sources, canvas, at least one frame;
 3. clicks a real broccoli card and checks net carbs 3.7 / fiber 2.4;
 4. adds salmon/avocado, checks zones/score/3 meshes;
 5. opens item detail and closes it;
@@ -51,7 +51,7 @@ The mock keychain flags prevent repeated macOS prompts. The suite:
 12. toggles theme, reloads, checks persistence;
 13. clears the plate;
 14. opens `?selftest` and checks 29/29 and the panel;
-15. emulates 390×844, adds 3 foods, checks no overflow, stage size, dock, 18 cards;
+15. emulates 390×844, adds 3 foods, checks no overflow, stage size, dock, 64 cards;
 16. checks every button has a name, all dialogs labelled, skip link, `lang`;
 17. fails on any console error or uncaught exception.
 

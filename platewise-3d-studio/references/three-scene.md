@@ -14,10 +14,10 @@
 ## Plate
 
 - Base cylinder radius 3.4, rim torus radius 3.3, white well at y≈0.
-- Three ring sectors, unlit `MeshBasicMaterial`, opacity 0.32:
-  - veg `0…π` `#7ac142`
-  - protein `π…3π/2` `#d77b62`
-  - fat `3π/2…2π` `#e2b45a`
+- Three ring sectors, unlit `MeshBasicMaterial`, opacity 0.32. World-space
+  zones: veg `0…π`, protein `π…3π/2`, fat `3π/2…2π`. Because RingGeometry is
+  rotated onto XZ, theta starts are mirrored: veg `π…2π`, protein `π/2…π`, fat
+  `0…π/2`. The reference already had this bug once — verify a render.
 - White divider lines at 0, π, 3π/2.
 - Labels: canvas sprites at radius 2.62, pill background, `depthTest:false`,
   renderOrder 3. HTML zone legend is authoritative.
@@ -62,8 +62,12 @@ Caps: 12 total, veg 8, protein 4, fat 5. `addFood` refuses with a toast.
 - **raspberry**: 9 pink drupes + 4 leaves.
 - **blueberries**: 7 dusty blue spheres.
 
-Do not use external models or textures. All materials are `MeshStandardMaterial`
-unless a zone label/zone sector is unlit.
+The expanded pantry adds 22 reusable form families (`leafy`, `floret`, `cabbage`,
+`long`, `bean`, `okra`, `round`, `mushroom`, `artichoke`, `bulb`, `shrimp`,
+`fillet`, `smallfish`, `poultry`, `steak`, `meat`, `tempeh`, `yogurt`, `nut`,
+`seed`, `olives`, `oilbottle`). They read `food.form`, `food.color` and
+`food.accent`. Do not use external models or textures. All materials are
+`MeshStandardMaterial` unless a zone label/zone sector is unlit.
 
 ## Pointer and selection
 

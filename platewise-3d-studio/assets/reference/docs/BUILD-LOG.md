@@ -29,7 +29,7 @@ session database rather than estimated.
 - One `PlateScene` with a single renderer/camera/controls.
 - Plate: cylinder, torus rim, three ring sectors, divider lines, canvas label
   sprites, procedural cutlery.
-- 18 factories built from primitives. The first pass was over-lit and pastel;
+- The original 18 hand-built factories, later joined by 22 reusable form families for the 64-food pantry. The first pass was over-lit and pastel;
   reduced exposure, lowered key light, made zone sectors unlit, and scaled food
   up by 18%.
 - Labels were initially buried by food. Moved them to the rim and gave them
@@ -123,6 +123,25 @@ directly. This is the single most important bug for a reimplementation to avoid.
 2. Use document-absolute screenshot clips.
 3. Force the theme for deterministic screenshots.
 4. Do not trust a single food mesh at small scale: render a crowded plate and all
-   18 foods before calling the visual pass done.
+   64 foods before calling the visual pass done.
 5. Keep the medical boundary visible in the copy, not only in the docs.
 6. Treat `state.json` as generated data, not prose.
+
+## 1.1.0 — Pantry expansion and the mirrored zones
+
+- Expanded the pantry from 18 to 64 whole foods: 30 non-starchy vegetables,
+  3 berries, 14 proteins and 17 fats/nuts/seeds/oils.
+- Added 22 reusable procedural form families instead of 46 one-off factories.
+  Every food record carries `form`, `color` and `accent`; the original 18 keep
+  their dedicated factories. The selftest now builds every mesh, not just checks
+  that a key exists.
+- Split the pantry filters into **Nuts & seeds** and **Fats & oils**, bringing
+  the chip row to eight options.
+- Found and fixed a long-standing geometry bug: `RingGeometry` is rotated onto
+  the XZ plane, which mirrors z, so the painted veg zone was behind the food
+  slots and the 50% VEG label. The zones are now theta-mapped intentionally
+  (veg `π…2π`, protein `π/2…π`, fat `0…π/2`) so the visible colour matches the
+  slots and labels. Always verify a render, not just the angle constants.
+- Rebuilt the screenshots, the 64-row nutrition table, the source-description
+  table, the static counts, the browser counts, the skill reference and the
+  catalog.

@@ -39,7 +39,7 @@ durable handoff for developers, agents and reviewers.
 | --- | --- |
 | App files | `index.html`, `style.css`, `script.js` |
 | Runtime dependency | Three.js 0.169.0 via pinned CDN |
-| Safe foods | 18 |
+| Safe foods | 64 |
 | Warnings / swaps | 6 / 6 |
 | Balanced sample | 8 servings, 17.7 g net carbs, 16.4 g fiber, score 96 |
 | Curve | 0–180 min, 37 samples, reference peak ≈178 mg/dL |

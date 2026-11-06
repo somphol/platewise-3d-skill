@@ -21,7 +21,7 @@ the plate can be performed from the DOM.
   selected-item card exposes nutrition and a remove action.
 - **Live announcements.** `#sr-announcer` (polite) announces additions, the
   balanced plate, warnings and saves. The HUD is a polite live region. The pantry
-  grid itself is not a live region, to avoid re-announcing 18 cards on each add.
+  grid itself is not a live region, to avoid re-announcing 64 cards on each add.
 - **Chart alternative.** The canvas has an `aria-label` rewritten with the
   modeled peak/time and the reference peak. Text summaries repeat the peak rise,
   time to peak and estimated load.

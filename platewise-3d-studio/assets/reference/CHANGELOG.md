@@ -3,6 +3,30 @@
 All notable changes are documented here. The format follows Keep a Changelog;
 the project follows Semantic Versioning for its own code.
 
+## [1.1.0] — 2026-11-05
+
+### Added
+
+- Expanded the pantry from 18 to **64 whole foods**: 30 non-starchy vegetables,
+  three low-GI berries, 14 proteins and 17 fats, nuts, seeds and oils.
+- Added leafy greens (kale, arugula, romaine, chard, collards, bok choy,
+  watercress), more cruciferous vegetables, cucumber, celery, green beans, snap
+  peas, okra, eggplant, tomato, mushrooms, artichoke, fennel, radishes, onion,
+  leek, garlic and hearts of palm.
+- Added seafood and lean proteins (shrimp, tuna, cod, sardines, trout, turkey,
+  sirloin, pork tenderloin, tempeh, Greek yogurt).
+- Added nuts, seeds and oils (pecans, pistachios, macadamia, pine nuts, cashews,
+  flax, hemp, pumpkin, sunflower, sesame, olives, avocado oil).
+- Added 22 reusable procedural form families so every new food has a 3D mesh
+  without duplicating a factory per item.
+- Split the pantry into **Nuts & seeds** and **Fats & oils** filters.
+
+### Fixed
+
+- The painted plate sectors were mirrored relative to the food slots and zone
+  labels. Veg now occupies the front 50% as labelled, protein the back-left and
+  fats the back-right.
+
 ## [1.0.0] — 2026-11-05
 
 ### Added

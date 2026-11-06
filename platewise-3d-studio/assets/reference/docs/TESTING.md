@@ -18,7 +18,7 @@ This reads the repository and checks:
 - every DOM ID the script needs exists exactly once;
 - four labelled native dialogs and a skip link exist;
 - the self-test API and boot contract are present;
-- 18 foods, 6 warnings, 6 swaps, and both sample plate constants are present;
+- 64 foods, 6 warnings, 6 swaps, and both sample plate constants are present;
 - the nutrition page contains every food and the formula terms;
 - the source page cites ADA, USDA and NIH/PubMed;
 - `AGENTS.md` has the handoff sections;
@@ -46,7 +46,7 @@ The harness (`tests/lib/harness.mjs`) does four things:
 The 47 checks cover:
 
 - boot, title, WebGL context, canvas size, at least one rendered frame;
-- 18/6/6 data counts and six sources;
+- 64/6/6 data counts and six sources;
 - click-to-place from a real pantry card, HUD sync, real-time net carbs/fiber;
 - protein/fat zone registration and score for a complete plate;
 - item inspection, removal and clear;
@@ -59,7 +59,7 @@ The 47 checks cover:
 - save, `localStorage` persistence, reload, load meal;
 - theme toggle, preference persistence across reload;
 - in-page self-test 29/29 and its panel;
-- 390 px layout: no horizontal overflow, stage size, mobile dock, 18 cards;
+- 390 px layout: no horizontal overflow, stage size, mobile dock, 64 cards;
 - button accessible names, labelled dialogs, skip link and `lang`;
 - zero console errors and uncaught exceptions.
 
@@ -106,7 +106,7 @@ The 29 checks are deliberately data- and integration-oriented:
 - live WebGL context and rendered frame;
 - chart canvas dimensions;
 - score bounds under a ten-serving stress plate;
-- every food has a 3D factory;
+- every food builds a non-empty 3D mesh;
 - every warning has a source note.
 
 `window.__platewise.selftest` contains the results;

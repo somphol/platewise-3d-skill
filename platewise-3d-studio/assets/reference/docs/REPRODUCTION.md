@@ -10,7 +10,7 @@ because the visual result is easy to get subtly wrong.
 Build a static single-page 3D non-starchy whole-food plate picker with:
 
 - one Three.js plate divided 50% veg / 25% protein / 25% fats;
-- 18 whole foods, each a procedural mesh, click-to-place;
+- 64 whole foods, each a procedural mesh, click-to-place;
 - live net carbs, fiber, protein, calories, GL and a 0–100 score;
 - 6 starch/processed warnings that cannot be placed, each with a swap;
 - 6 swaps that add whole-food alternatives;
@@ -78,12 +78,12 @@ Use the table in [NUTRITION.md](NUTRITION.md) verbatim. The shape is:
 }
 ```
 
-The 18 foods by zone:
+The 64 foods by zone:
 
-- veg: broccoli, spinach, cauliflower, zucchini, bell pepper, asparagus
-- protein: wild salmon, egg, chicken breast, firm tofu
-- fat: avocado, almonds, walnuts, olive oil, chia seeds
-- berries (zone veg): strawberries, raspberries, blueberries
+- 30 non-starchy vegetables: broccoli, spinach, cauliflower, zucchini, bell pepper, asparagus, kale, arugula, romaine, Swiss chard, collard greens, bok choy, watercress, Brussels sprouts, red cabbage, cucumber, celery, green beans, snap peas, okra, eggplant, tomato, cremini mushrooms, artichoke hearts, fennel, radishes, red onion, leek, garlic, hearts of palm
+- 14 proteins: wild salmon, egg, chicken breast, firm tofu, shrimp, tuna, cod, sardines, trout, turkey breast, beef sirloin, pork tenderloin, tempeh, Greek yogurt
+- 17 fats, nuts, seeds and oils: avocado, almonds, walnuts, olive oil, chia, pecans, pistachios, macadamia, pine nuts, cashews, flaxseed, hemp hearts, pumpkin seeds, sunflower seeds, sesame seeds, black olives, avocado oil
+- 3 berries (zone veg): strawberries, raspberries, blueberries
 
 Warnings use per-serving values (`net`, `fiber`, `gi`, `gl`) plus `swapId`.
 Swaps use `addIds` that exist in the pantry. The 6/6 counts are part of the
@@ -109,7 +109,7 @@ Order in `index.html`:
 3. Intro: headline, one-paragraph lede, two CTAs, four compact stats.
 4. Builder grid:
    - left `aside.palette`: search, seven chips (All, Leafy, Cruciferous,
-     Veggies, Proteins, Fats, Berries), 18 cards, watch-outs details, note;
+     Veggies, Proteins, Nuts & seeds, Fats & oils, Berries), 64 cards, watch-outs details, note;
    - centre `.stage-column`: canvas + loading + HUD + tools + empty prompt +
      zone legend + hint + actions;
    - right `aside.insights`: score ring, four macros, balance bars, method
@@ -283,7 +283,7 @@ column. Build the OG card as its own 1200×630 page.
 - Set Pages to `main` / root; wait for the deployment; run the live suite.
 - Add repository description, homepage and topics.
 - Verify `/`, `/docs/`, `/404.html`, `/sitemap.xml` and `?selftest`.
-- Tag `v1.0.0` and create a release with the CHANGELOG notes.
+- Tag `v1.1.0` and create a release with the CHANGELOG notes.
 
 ## 12. Capture honest build state
 
