@@ -5,16 +5,16 @@
     "version": "1.0.0",
     "name": "Non-Starchy Whole Food Picker",
     "license": "MIT",
-    "releasedAt": "2026-11-06T05:45:58.927Z"
+    "releasedAt": "2026-11-06T05:47:38.914Z"
   },
   "session": {
     "id": "ses_e50cc1dc6ffekm230esZitx60J",
     "title": "PlateWise 3D food picker project",
     "directory": "/Users/somphol",
     "startedAt": "2026-11-06T04:52:55.509Z",
-    "capturedAt": "2026-11-06T05:45:58.927Z",
-    "elapsedSeconds": 3183,
-    "elapsed": "0h 53m 03s",
+    "capturedAt": "2026-11-06T05:47:38.914Z",
+    "elapsedSeconds": 3283,
+    "elapsed": "0h 54m 43s",
     "note": "Wall-clock build time from the OpenCode session start through local verification, documentation and release. Captured just before the final state commit; use the timestamps as the source of truth. Not an estimate of model-only time."
   },
   "model": {
@@ -24,12 +24,12 @@
     "modelField": "{\"id\":\"deepseek-v4.1-flash\",\"providerID\":\"opencode-go\"}"
   },
   "usage": {
-    "inputTokens": 67896,
-    "outputTokens": 164684,
-    "reasoningTokens": 80842,
-    "cacheReadTokens": 36393856,
+    "inputTokens": 68596,
+    "outputTokens": 166135,
+    "reasoningTokens": 81942,
+    "cacheReadTokens": 37914240,
     "cacheWriteTokens": 1408,
-    "totalTokens": 36708686,
+    "totalTokens": 38232321,
     "costUSD": 0,
     "note": "Read from the OpenCode session database (session_v2) with scripts/capture-state.mjs. totalTokens is the sum of all five counters, including prompt context read repeatedly from cache; cache reads dominate the figure. costUSD is 0 on the flat-rate plan."
   },
