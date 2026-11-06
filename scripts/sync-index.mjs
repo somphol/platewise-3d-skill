@@ -10,7 +10,7 @@ import { fileURLToPath } from 'node:url';
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const NAME = 'platewise-3d-studio';
 const DIR = join(ROOT, NAME);
-const SKIP = new Set(['.git', '.DS_Store', 'node_modules', 'dist', 'dist-single', 'shots', 'film']);
+const SKIP = new Set(['.git', '.github', '.DS_Store', 'node_modules', 'dist', 'dist-single', 'shots', 'film']);
 
 function walk(dir, base = dir) {
   const out = [];

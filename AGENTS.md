@@ -33,7 +33,8 @@ Run from the repository root.
 - `platewise-3d-studio/references/` — method, nutrition, scene, verification,
   lessons, hosting, build log.
 - `platewise-3d-studio/assets/reference/` — the complete v1.0.0 app, docs, tests,
-  screenshots and state.
+  screenshots and state. `templates/github/` holds the CI and issue templates
+  because GitHub Pages cannot serve `.github/`; the scaffold restores them.
 - `platewise-3d-studio/scripts/new-project.mjs` — copies the reference; refuses a
   non-empty directory unless `--force`.
 - `platewise-3d-studio/scripts/verify-skill.mjs` — static checks + Node tests;

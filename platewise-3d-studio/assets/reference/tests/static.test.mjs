@@ -38,7 +38,7 @@ test('required release files exist', () => {
     'CHANGELOG.md', 'CONTRIBUTING.md', 'CODE_OF_CONDUCT.md', 'SECURITY.md',
     'SUPPORT.md', 'ROADMAP.md', 'CITATION.cff', 'THIRD_PARTY_NOTICES.md',
     'state.json', '.nojekyll', 'robots.txt', 'sitemap.xml', '404.html', 'docs/index.html',
-    '.github/workflows/ci.yml', 'tests/browser.test.mjs', 'tests/static.test.mjs',
+    'tests/browser.test.mjs', 'tests/static.test.mjs',
     'scripts/smoke.mjs', 'scripts/screenshot.mjs', 'assets/favicon.svg',
     'assets/studio.png', 'assets/stage.png', 'assets/analysis.png',
     'assets/glucose.png', 'assets/mobile.png', 'assets/og.png',
@@ -210,7 +210,11 @@ test('deployment metadata points at the canonical Pages URL', () => {
 
 test('GitHub Pages and CI plumbing are present', () => {
   assert.ok(existsSync(join(ROOT, '.nojekyll')));
-  const workflow = read('.github/workflows/ci.yml');
+  const ciPath = existsSync(join(ROOT, '.github/workflows/ci.yml'))
+    ? '.github/workflows/ci.yml'
+    : 'templates/github/workflows/ci.yml';
+  assert.ok(existsSync(join(ROOT, ciPath)), 'no CI workflow or catalog-safe template');
+  const workflow = read(ciPath);
   assert.match(workflow, /node --test tests\/static\.test\.mjs/);
   assert.match(workflow, /tests\/browser\.test\.mjs/);
   assert.match(workflow, /actions\/checkout/);

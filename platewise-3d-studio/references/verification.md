@@ -22,6 +22,10 @@ state.json counters, canonical URL, CI, license, reduced motion and mobile CSS.
 Add `docs/index.html` to the required release files. It makes `/docs/` work on
 GitHub Pages.
 
+GitHub Pages does not serve dot-directories. The catalog therefore ships the CI
+workflow and GitHub templates under `templates/github/`; `new-project.mjs` copies
+them to `.github/` after scaffolding. The static test accepts either location.
+
 ## Browser suite
 
 One headless Chrome, one ephemeral local server, CDP over Node's built-in

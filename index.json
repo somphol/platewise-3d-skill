@@ -3,7 +3,7 @@
   "skills": [
     {
       "name": "platewise-3d-studio",
-      "version": "53d2c3fc97a8",
+      "version": "561dde79d5a0",
       "description": "Build a release-grade static Three.js non-starchy whole-food plate picker: 18 procedural foods, a 50/25/25 plate, live net carbs/fiber/glycemic load and safety score, six starch warnings and swaps, a simulated glucose curve, a local meal log, documentation, three verification layers and GitHub Pages.",
       "license": "MIT",
       "files": [
@@ -12,10 +12,6 @@
         "LICENSE",
         "SKILL.md",
         "assets/reference/.editorconfig",
-        "assets/reference/.github/ISSUE_TEMPLATE/bug_report.yml",
-        "assets/reference/.github/ISSUE_TEMPLATE/feature_request.yml",
-        "assets/reference/.github/PULL_REQUEST_TEMPLATE.md",
-        "assets/reference/.github/workflows/ci.yml",
         "assets/reference/.gitignore",
         "assets/reference/.nojekyll",
         "assets/reference/404.html",
@@ -62,6 +58,10 @@
         "assets/reference/sitemap.xml",
         "assets/reference/state.json",
         "assets/reference/style.css",
+        "assets/reference/templates/github/ISSUE_TEMPLATE/bug_report.yml",
+        "assets/reference/templates/github/ISSUE_TEMPLATE/feature_request.yml",
+        "assets/reference/templates/github/PULL_REQUEST_TEMPLATE.md",
+        "assets/reference/templates/github/workflows/ci.yml",
         "assets/reference/tests/browser.test.mjs",
         "assets/reference/tests/lib/fixtures.mjs",
         "assets/reference/tests/lib/harness.mjs",

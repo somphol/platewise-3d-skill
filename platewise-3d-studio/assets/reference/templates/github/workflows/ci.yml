@@ -1,0 +1,42 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  static:
+    name: Static and release invariants
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Syntax check
+        run: node --check script.js && node --check tests/browser.test.mjs
+      - name: Static suite
+        run: node --test tests/static.test.mjs
+
+  browser:
+    name: Headless browser suite
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Locate Chrome
+        run: |
+          if [ -x /usr/bin/google-chrome-stable ]; then echo "CHROME=/usr/bin/google-chrome-stable" >> "$GITHUB_ENV"; fi
+          if [ -x /usr/bin/google-chrome ]; then echo "CHROME=/usr/bin/google-chrome" >> "$GITHUB_ENV"; fi
+          echo "Using ${CHROME:-the harness default}"
+      - name: Browser suite
+        run: node tests/browser.test.mjs

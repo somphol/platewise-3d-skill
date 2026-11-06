@@ -36,6 +36,13 @@ cpSync(REFERENCE, target, {
   filter: (source) => !source.split('/').includes('.git'),
 });
 
+// GitHub Pages cannot serve dot-directories, so the catalog ships the CI and
+// issue templates under templates/github/. Restore them for the real repo.
+const githubTemplate = join(target, 'templates', 'github');
+if (existsSync(githubTemplate)) {
+  cpSync(githubTemplate, join(target, '.github'), { recursive: true });
+}
+
 const state = JSON.parse(readFileSync(join(target, 'state.json'), 'utf8'));
 console.log(`Scaffolded ${state.project} v${state.release.version} into ${target}`);
 console.log(`

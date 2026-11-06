@@ -1,0 +1,36 @@
+name: Feature request
+description: Suggest an improvement that fits the project's scope.
+title: "[idea] "
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        PlateWise is static, local-only teaching tool. Accounts, cloud sync,
+        CGM integrations and individualized medical advice are out of scope.
+  - type: textarea
+    id: problem
+    attributes:
+      label: What problem does this solve?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed solution
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidence or sources
+      description: For any nutrition or medical change, cite USDA, ADA, NIH/PubMed or a GI table.
+  - type: checkboxes
+    id: scope
+    attributes:
+      label: Scope check
+      options:
+        - label: This keeps the app static, local-only and account-free.
+          required: true
+        - label: This does not ask the app to give individualized medical advice.
+          required: true
