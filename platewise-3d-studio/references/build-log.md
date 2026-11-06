@@ -29,7 +29,7 @@ session database rather than estimated.
 - One `PlateScene` with a single renderer/camera/controls.
 - Plate: cylinder, torus rim, three ring sectors, divider lines, canvas label
   sprites, procedural cutlery.
-- 18 factories built from primitives. The first pass was over-lit and pastel;
+- The original 18 hand-built factories, later joined by 22 reusable form families for the 64-food pantry. The first pass was over-lit and pastel;
   reduced exposure, lowered key light, made zone sectors unlit, and scaled food
   up by 18%.
 - Labels were initially buried by food. Moved them to the rim and gave them
@@ -86,15 +86,35 @@ directly. This is the single most important bug for a reimplementation to avoid.
 - Reproduction notes include the exact scene angles, slots, score and curve
   formulas, and the mistakes above.
 
-## Later — Publish, state, skill
+## 21:33 — Published and verified
 
-- Push to `somphol/platewise-3d`, enable Pages on `main` / root, run the live
-  suite.
-- Capture `state.json` from `session_v2`: start time, elapsed wall clock, all
-  five token counters, model/provider, artifact counts and verification totals.
-- Turn the build into the `platewise-3d-studio` skill, scaffold a clean copy from
-  it, verify, and publish the backup repo + Pages catalog.
-- Regenerate screenshots after any visual change made during documentation.
+- Created `somphol/platewise-3d`, pushed `main`, enabled Pages on `main` / root.
+- `/`, `/docs/`, `/404.html` and `/sitemap.xml` return 200.
+- Ran the live suite against the Pages URL: **47/47**, zero console errors.
+- Tagged `v1.0.0` and created a release.
+- Captured the first state snapshot from the OpenCode database (see
+  `docs/STATE.md` for the current numbers; they were captured before the skill
+  work, then refreshed at the very end).
+- Added a real `docs/index.html` because GitHub Pages does not render Markdown
+  directories.
+
+## 21:36 — Skill package
+
+- Created `platewise-3d-studio` with SKILL.md, method, nutrition, scene,
+  verification, lessons, hosting and this build log.
+- Copied the complete reference into `assets/reference/`.
+- Wrote `scripts/new-project.mjs` and `scripts/verify-skill.mjs`; scaffolded a
+  clean copy and passed 22 static + 47 browser checks there.
+- Published `somphol/platewise-3d-skill`, enabled Pages and rebuilt `index.json`
+  with a content hash.
+- Found that GitHub Pages will not serve `.github/` from a catalog. Moved the CI
+  and issue templates to `templates/github/` and made the scaffold restore
+  `.github/`; the static suite accepts either location.
+- Downloaded all 68 catalog files over HTTPS, ran the static and browser suites
+  against the downloaded reference, then scaffolded from the catalog and ran
+  both suites again. All passed.
+- Refreshed `state.json` after the skill work so the recorded time and tokens
+  cover the whole reference build, not just the app.
 
 ## Lessons for the next agent
 
@@ -103,20 +123,33 @@ directly. This is the single most important bug for a reimplementation to avoid.
 2. Use document-absolute screenshot clips.
 3. Force the theme for deterministic screenshots.
 4. Do not trust a single food mesh at small scale: render a crowded plate and all
-   18 foods before calling the visual pass done.
+   64 foods before calling the visual pass done.
 5. Keep the medical boundary visible in the copy, not only in the docs.
 6. Treat `state.json` as generated data, not prose.
 
-## After the reference build
+## 1.1.0 — Pantry expansion and the mirrored zones
 
-The finished app was published to <https://github.com/somphol/platewise-3d> and
-<https://somphol.github.io/platewise-3d/>. The live suite passed 47/47, the local
-suite 47/47 and the in-page selftest 29/29. The state was captured from the
-OpenCode session database with `scripts/capture-state.mjs`; the reference copy in
-`assets/reference/state.json` is a point-in-time snapshot, not a claim about your
-session.
+- Expanded the pantry from 18 to 64 whole foods: 30 non-starchy vegetables,
+  3 berries, 14 proteins and 17 fats/nuts/seeds/oils.
+- Added 22 reusable procedural form families instead of 46 one-off factories.
+  Every food record carries `form`, `color` and `accent`; the original 18 keep
+  their dedicated factories. The selftest now builds every mesh, not just checks
+  that a key exists.
+- Split the pantry filters into **Nuts & seeds** and **Fats & oils**, bringing
+  the chip row to eight options.
+- Found and fixed a long-standing geometry bug: `RingGeometry` is rotated onto
+  the XZ plane, which mirrors z, so the painted veg zone was behind the food
+  slots and the 50% VEG label. The zones are now theta-mapped intentionally
+  (veg `π…2π`, protein `π/2…π`, fat `0…π/2`) so the visible colour matches the
+  slots and labels. Always verify a render, not just the angle constants.
+- Rebuilt the screenshots, the 64-row nutrition table, the source-description
+  table, the static counts, the browser counts, the skill reference and the
+  catalog.
 
-The build log is intentionally blunt about the destructuring bug and the
-screenshot clip mistake. Those are the two failures most likely to recur in a
-copy. The nutrition and medical boundaries are not “nice to have”; they are part
-of the product contract.
+## Skill packaging
+
+The reference was published as this skill with a catalog-safe copy of the CI
+templates, a scaffold and a verification harness. The catalog was downloaded
+over HTTPS and the reference/scaffold both passed 22 static and 47 browser
+checks. The 1.1.0 update added 46 more foods and fixed the mirrored zone bug;
+the catalog was re-verified with 64 foods.
